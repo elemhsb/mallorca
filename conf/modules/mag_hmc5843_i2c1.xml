@@ -1,0 +1,23 @@
+<!DOCTYPE module SYSTEM "module.dtd">
+
+<module name="sensors">
+  <doc>
+    <description>standalone hmc5843 magnetometer on i2c1</description>
+  </doc>
+  <!-- <depend conflict="ins" -->
+  <header>
+    <file name="mag_hmc5843.h"/>
+  </header>
+  <init fun="hmc5843_module_init()"/>
+  <periodic fun="hmc5843_module_periodic()" freq="20"/>
+  <event fun="hmc5843_module_event()"/>
+  <makefile>
+    <define name="USE_I2C" />
+    <file name="mag_hmc5843.c"/>
+    <file name="../../peripherals/hmc5843.c"/>
+    <define name="HMC5843_I2C_DEVICE" value="i2c1" />
+    <define name="I2C1_VIC_SLOT" value="12" />
+    <define name="USE_I2C1" />
+    <define name="HMC5843_NO_IRQ" />
+  </makefile>
+</module>

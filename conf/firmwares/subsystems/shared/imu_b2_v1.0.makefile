@@ -44,16 +44,32 @@ imu_CFLAGS += -DIMU_B2_VERSION_1_0
 
 # Magnetometer
 ifndef NO_MAG
+
+ifeq ($(BOARD), hbmini)
+# Mag HMC5843
+ifeq ($(ARCH), lpc21)
+imu_CFLAGS += -DIMU_B2_MAG_TYPE=IMU_B2_MAG_HMC5843
+imu_CFLAGS += -DHMC58XX_I2C_DEVICE=i2c1 -DUSE_I2C1 -DI2C1_VIC_SLOT=12 -DHMC5843_NO_IRQ
+imu_srcs += peripherals/hmc58xx.c
+else ifeq ($(ARCH), stm32)
+imu_CFLAGS += -DIMU_B2_MAG_TYPE=IMU_B2_MAG_HMC5843
+imu_srcs += peripherals/hmc5843.c
+imu_srcs += $(SRC_ARCH)/peripherals/hmc5843_arch.c
+imu_CFLAGS += -DUSE_I2C2 -DUSE_EXTI9_5_IRQ
+
+else
+
+# Mag AMI601
 imu_CFLAGS += -DIMU_B2_MAG_TYPE=IMU_B2_MAG_AMI601
 imu_CFLAGS += -DUSE_AMI601
 imu_srcs += peripherals/ami601.c
 
-ifeq ($(ARCH), lpc21)
-imu_CFLAGS += -DUSE_I2C1  -DI2C1_SCLL=150 -DI2C1_SCLH=150 -DI2C1_VIC_SLOT=12
-else ifeq ($(ARCH), stm32)
+#ifeq ($(ARCH), lpc21)
+#imu_CFLAGS += -DUSE_I2C1  -DI2C1_SCLL=150 -DI2C1_SCLH=150 -DI2C1_VIC_SLOT=12
+#else ifeq ($(ARCH), stm32)
 #FIXME: untested
-imu_CFLAGS += -DUSE_I2C2 -DUSE_EXTI9_5_IRQ
-endif
+#imu_CFLAGS += -DUSE_I2C2 -DUSE_EXTI9_5_IRQ
+#endifendif
 
 endif #NO_MAG
 

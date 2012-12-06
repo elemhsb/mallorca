@@ -50,7 +50,11 @@
 
 void init_bat_checker(void) {
   LED_INIT(BAT_CHECKER_LED);
+#ifndef INVERT_BAT_LED
   LED_OFF(BAT_CHECKER_LED);
+#else
+  LED_ON(BAT_CHECKER_LED);
+#endif
 }
 
 void bat_checker_periodic(void) {
@@ -64,12 +68,26 @@ void bat_checker_periodic(void) {
 
   if(!bat_low_counter) {
     if(electrical.vsupply < WARN_BAT_LEVEL2) {
+#ifndef INVERT_BAT_LED
+      LED_OFF(BAT_CHECKER_LED);
+      LED_OFF(6);
+
+#else
       LED_ON(BAT_CHECKER_LED);
+      LED_ON(6);
+#endif
     } else if(electrical.vsupply < WARN_BAT_LEVEL1) {
       LED_TOGGLE(BAT_CHECKER_LED);
+      LED_TOGGLE(6);
     }
   } else {
-    LED_OFF(BAT_CHECKER_LED);
+#ifndef INVERT_BAT_LED
+      LED_OFF(BAT_CHECKER_LED);
+      LED_OFF(6);
+#else
+      LED_ON(BAT_CHECKER_LED);
+      LED_ON(6);
+#endif
   }
 }
 

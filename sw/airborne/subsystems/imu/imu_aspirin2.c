@@ -53,7 +53,6 @@ void imu_impl_init(void) {
 
 void imu_periodic(void)
 {
-
   if (imu_aspirin2.status == Aspirin2StatusUninit) {
     mpu_configure();
     // imu_aspirin_arch_int_enable();
@@ -70,7 +69,6 @@ void imu_periodic(void)
 
     // imu_aspirin2.imu_tx_buf[0] = MPU60X0_REG_WHO_AM_I + MPU60X0_SPI_READ;
     // imu_aspirin2.imu_tx_buf[1] = 0x00;
-
     spi_rw(&aspirin2_mpu60x0);
   }
 }
@@ -97,8 +95,6 @@ static inline void mpu_wait_slave4_ready(void)
     ret = aspirin2_mpu60x0.miso_buf[1];
   }
 }
-
-
 
 static void mpu_configure(void)
 {
@@ -160,7 +156,6 @@ static void mpu_configure(void)
            (3 << 3) );			// Full Scale = 16g
 
 #ifndef MPU6000_NO_SLAVES
-
   /////////////////////////////////////
   // SPI Slave Configuration Section
 
@@ -226,9 +221,7 @@ static void mpu_configure(void)
            (6 << 0) );		// Read 6 bytes
 
   // Slave 0 Control:
-
-
+#else
+  hmc5843_init();
 #endif
-
 }
-

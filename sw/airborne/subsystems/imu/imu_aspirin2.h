@@ -25,6 +25,23 @@
 #include "generated/airframe.h"
 #include "subsystems/imu.h"
 
+#if MPU6000_NO_SLAVES
+   //WARM hmc5843 runs on lpc2148 i2c
+
+#include "peripherals/hmc5843.h"
+#define foo_handler() {}
+#define ImuMagEvent(_mag_handler) {					\
+    MagEvent(foo_handler);                          \
+    if (hmc5843.data_available) {			\
+      imu.mag_unscaled.z = hmc5843.data.value[IMU_MAG_X_CHAN];		\
+      imu.mag_unscaled.y = hmc5843.data.value[IMU_MAG_Y_CHAN];		\
+      imu.mag_unscaled.x = hmc5843.data.value[IMU_MAG_Z_CHAN];  \
+                                                                     \
+      _mag_handler();							\
+      hmc5843.data_available = FALSE;		\
+    }									\
+  }
+#endif
 
 #ifdef IMU_ASPIRIN_VERSION_2_1
 #if !defined IMU_MAG_X_SIGN & !defined IMU_MAG_Y_SIGN & !defined IMU_MAG_Z_SIGN
@@ -138,7 +155,9 @@ static inline uint8_t imu_from_buff(void)
 #else
   RATES_ASSIGN(imu.gyro_unscaled, p, q, r);
   VECT3_ASSIGN(imu.accel_unscaled, x, y, z);
+#if !MPU6000_NO_SLAVES
   VECT3_ASSIGN(imu.mag_unscaled, Mz, -Mx, My);
+#endif
 #endif
 
   return 1;
@@ -156,6 +175,9 @@ static inline void imu_aspirin2_event(void (* _gyro_handler)(void), void (* _acc
       _gyro_handler();
       _accel_handler();
       _mag_handler();
+#if !MPU6000_NO_SLAVES
+      _mag_handler();   //WARM
+#endif
     }
   }
 }

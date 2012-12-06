@@ -92,7 +92,10 @@ void imu_impl_init(void)
 #else
 #  if PERIODIC_FREQUENCY == 120
 #  else
-#  error PERIODIC_FREQUENCY should be either 60Hz or 120Hz. Otherwise manually fix the sensor rates
+#    if PERIODIC_FREQUENCY == 512
+#    else
+#      error PERIODIC_FREQUENCY should be either 60Hz or 120Hz (or 512). Otherwise manually fix the sensor rates
+#    endif
 #  endif
 #endif
   aspirin2_mpu60x0.buf[0] = MPU60X0_REG_CONFIG;

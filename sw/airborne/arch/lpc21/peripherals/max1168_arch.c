@@ -27,6 +27,10 @@ static void EXTINT0_ISR(void) __attribute__((naked));
 
 void max1168_arch_init( void ) {
 
+#if CS_74138
+  /* P1.25-16 are used as GPIO */
+  PINSEL2 &= ~(_BV(3));
+#endif // CS_74138
   /* unselected max1168 */
   Max1168Unselect();
   /* SS pin is output */
