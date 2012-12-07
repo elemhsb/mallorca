@@ -21,25 +21,25 @@ endif
 #
 # default LED configuration
 #
-#ifndef RADIO_CONTROL_LED
-#RADIO_CONTROL_LED  = 1
-#endif
-#
-#ifndef BARO_LED
-#BARO_LED = 2
-#endif
+ifndef RADIO_CONTROL_LED
+RADIO_CONTROL_LED  = none
+endif
 
-#ifndef AHRS_ALIGNER_LED
-#AHRS_ALIGNER_LED = 3
-#endif
+ifndef BARO_LED
+BARO_LED = none
+endif
 
-#ifndef GPS_LED
-#GPS_LED = 4
-#endif
+ifndef AHRS_ALIGNER_LED
+AHRS_ALIGNER_LED = none
+endif
 
-#ifndef SYS_TIME_LED
-#SYS_TIME_LED = 1
-#endif
+ifndef GPS_LED
+GPS_LED = none
+endif
+
+ifndef SYS_TIME_LED
+SYS_TIME_LED = none
+endif
 
 #RADIO_CONTROL_LINK = UART0
 
@@ -61,9 +61,9 @@ endif
 # you can use different actuators by adding a configure option to your firmware section
 # e.g. <configure name="ACTUATORS" value="actuators_ppm/>
 #
-#ifndef ACTUATORS
+ifndef ACTUATORS
 ACTUATORS = actuators_4017
-#endif
+endif
 
 
 # All targets on the TINY board run on the same processor achitecture

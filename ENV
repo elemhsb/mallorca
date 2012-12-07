@@ -4,5 +4,5 @@ export EDITOR=gedit
 export LD_LIBRARY_PATH=/opt/jsbsim/lib
 
 if [ "$AIRCRAFT" = "" ] ; then
-	export AIRCRAFT=HBMINI_V1
+	export AIRCRAFT=HBMINI_V2
 fi

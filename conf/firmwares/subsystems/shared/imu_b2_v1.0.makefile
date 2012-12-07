@@ -56,6 +56,7 @@ imu_CFLAGS += -DIMU_B2_MAG_TYPE=IMU_B2_MAG_HMC5843
 imu_srcs += peripherals/hmc5843.c
 imu_srcs += $(SRC_ARCH)/peripherals/hmc5843_arch.c
 imu_CFLAGS += -DUSE_I2C2 -DUSE_EXTI9_5_IRQ
+endif
 
 else
 
@@ -69,7 +70,8 @@ imu_srcs += peripherals/ami601.c
 #else ifeq ($(ARCH), stm32)
 #FIXME: untested
 #imu_CFLAGS += -DUSE_I2C2 -DUSE_EXTI9_5_IRQ
-#endifendif
+#endif
+endif
 
 endif #NO_MAG
 
