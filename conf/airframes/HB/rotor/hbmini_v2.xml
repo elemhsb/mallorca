@@ -217,6 +217,7 @@
     <define name="USE_ATTITUDE_REF" value="0"/>
     <target name="ap" board="hbmini_2.0">
       <define name="CS_74138" value="1"/>
+	  <define name="IMU_HBMINI_I_VERSION_1_0" value="1"/>
       <define name="BMP_I2C_DEV" value="i2c1"/>
       <define name="SENSOR_SYNC_SEND" value="1"/>
       <define name="FAILSAFE_GROUND_DETECT"/>

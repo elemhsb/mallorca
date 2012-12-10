@@ -36,6 +36,39 @@
 #define IMU_B2_MAG_HMC5843 3
 #define IMU_B2_MAG_HMC58XX 4
 
+#ifdef IMU_HBMINI_I_VERSION_1_0
+#if !defined IMU_GYRO_P_CHAN & !defined IMU_GYRO_Q_CHAN & !defined IMU_GYRO_R_CHAN
+#define IMU_GYRO_P_CHAN  3
+#define IMU_GYRO_Q_CHAN  4
+#define IMU_GYRO_R_CHAN  5
+#endif
+#if !defined IMU_ACCEL_X_CHAN & !defined IMU_ACCEL_Y_CHAN & !defined IMU_ACCEL_Z_CHAN
+#define IMU_ACCEL_X_CHAN 0
+#define IMU_ACCEL_Y_CHAN 1
+#define IMU_ACCEL_Z_CHAN 2
+#endif
+#if !defined IMU_MAG_X_CHAN & !defined IMU_MAG_Y_CHAN & !defined IMU_MAG_Z_CHAN
+#define IMU_MAG_X_CHAN   2
+#define IMU_MAG_Y_CHAN   0
+#define IMU_MAG_Z_CHAN   1
+#endif
+
+#if !defined IMU_GYRO_P_SIGN & !defined IMU_GYRO_Q_SIGN & !defined IMU_GYRO_R_SIGN
+#define IMU_GYRO_P_SIGN   -1
+#define IMU_GYRO_Q_SIGN    1
+#define IMU_GYRO_R_SIGN   -1
+#endif
+#if !defined IMU_ACCEL_X_SIGN & !defined IMU_ACCEL_Y_SIGN & !defined IMU_ACCEL_Z_SIGN
+#define IMU_ACCEL_X_SIGN 1
+#define IMU_ACCEL_Y_SIGN -1
+#define IMU_ACCEL_Z_SIGN -1
+#endif
+#if !defined IMU_MAG_X_SIGN & !defined IMU_MAG_Y_SIGN & !defined IMU_MAG_Z_SIGN
+#define IMU_MAG_X_SIGN   -1
+#define IMU_MAG_Y_SIGN   -1
+#define IMU_MAG_Z_SIGN   -1
+#endif
+#endif /* IMU_HBMINI_I_VERSION_1_0 */
 
 #ifdef IMU_B2_VERSION_1_0
 /* Default IMU b2 sensors connection */
