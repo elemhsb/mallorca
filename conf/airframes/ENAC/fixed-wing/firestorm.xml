@@ -16,6 +16,8 @@
     <define name="AGR_CLIMB"/>
     <define name="ALT_KALMAN"/>
     <define name="LOITER_TRIM"/>
+    <define name="SENSOR_SYNC_SEND"/>
+    <define name="USE_BARO_AS_ALTIMETER"/>
     <!--define name="PITCH_TRIM"/-->
 
     <target name="sim" board="pc"/>
@@ -29,7 +31,7 @@
 
     <!-- Communication -->
     <subsystem name="telemetry" type="transparent">
-      <configure name="MODEM_BAUD" value="B57600"/>
+      <configure name="MODEM_BAUD" value="B38400"/>
     </subsystem>
 
     <!-- Actuators are automatically chosen according to board-->

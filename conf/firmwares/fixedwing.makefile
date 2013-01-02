@@ -20,6 +20,11 @@ SRC_MODULES=modules
 
 FIXEDWING_INC = -I$(SRC_FIRMWARE) -I$(SRC_FIXEDWING) -I$(SRC_BOARD)
 
+#
+# BARO
+#WARM
+#ap.srcs += $(SRC_BOARD)/baro_board.c
+
 
 
 # Standard Fixed Wing Code

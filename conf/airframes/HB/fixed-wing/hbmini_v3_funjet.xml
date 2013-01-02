@@ -21,9 +21,9 @@
     <!--load name="booz_drop.xml"/>
     <load name="booz_cam.xml"/-->
     <load name="mag_hmc5843_i2c1.xml"/>
-    <load name="baro_bmp.xml"/>
+ <!--   <load name="baro_bmp.xml"/>
     <load name="baro_board.xml"/>
-    <load name="gps_ubx_ucenter.xml"/>
+    <load name="gps_ubx_ucenter.xml"/> /-->
   </modules>
 
   <servos>
@@ -53,6 +53,36 @@
   </command_laws>
 
   <section name="IMU" prefix="IMU_">
+
+
+  <!-- Nr. 5 -->
+    <define name="ACCEL_X_NEUTRAL" value="26430"/>
+    <define name="ACCEL_Y_NEUTRAL" value="26282"/>
+    <define name="ACCEL_Z_NEUTRAL" value="26815"/>
+    <define name="ACCEL_X_SENS" value="1.895" integer="16"/>
+    <define name="ACCEL_Y_SENS" value="1.8260" integer="16"/>
+    <define name="ACCEL_Z_SENS" value="1.8750" integer="16"/>
+    <define name="ACCEL_X_SIGN" value="1"/>
+    <define name="ACCEL_Y_SIGN" value="-1"/>
+    <define name="ACCEL_Z_SIGN" value="-1"/>
+
+    <define name="MAG_X_NEUTRAL" value="103"/>
+    <define name="MAG_Y_NEUTRAL" value="124"/>
+    <define name="MAG_Z_NEUTRAL" value="9"/>
+    <define name="MAG_X_SENS" value="3.88984680104" integer="16"/>
+    <define name="MAG_Y_SENS" value="3.46530554418" integer="16"/>
+    <define name="MAG_Z_SENS" value="4.13251329042" integer="16"/>
+               
+    <define name="GYRO_P_NEUTRAL" value="21296"/>
+    <define name="GYRO_Q_NEUTRAL" value="21656"/>
+    <define name="GYRO_R_NEUTRAL" value="22257"/>
+    <define name="GYRO_P_SENS" value=" 2.217" integer="16"/>
+    <define name="GYRO_Q_SENS" value=" 2.217" integer="16"/>
+    <define name="GYRO_R_SENS" value=" 2.217" integer="16"/> 
+    <define name="GYRO_P_SIGN" value="-1" />
+    <define name="GYRO_Q_SIGN" value="1" />
+    <define name="GYRO_R_SIGN" value="-1" />
+<!--
     <define name="GYRO_P_NEUTRAL" value="20800"/>
     <define name="GYRO_Q_NEUTRAL" value="21650"/>
     <define name="GYRO_R_NEUTRAL" value="24300"/>
@@ -71,6 +101,7 @@
     <define name="ACCEL_X_SIGN" value="1"/>
     <define name="ACCEL_Y_SIGN" value="-1"/>
     <define name="ACCEL_Z_SIGN" value="-1"/>
+-->
     <define name="MAG_X_NEUTRAL" value="103"/>
     <define name="MAG_Y_NEUTRAL" value="124"/>
     <define name="MAG_Z_NEUTRAL" value="9"/>
@@ -212,6 +243,10 @@
       <define name="USE_GPS_ACC4R"/>
       <define name="AGR_CLIMB"/>
       <define name="ALT_KALMAN"/>
+      <define name="HBminiBMP" value="1"/>
+      <define name="IMU_HBMINI_I_VERSION_1_0" value="1"/>
+
+
     </target>
     <target name="sim"          board="pc"/>
 
@@ -226,9 +261,11 @@
     <!-- Actuators are automatically chosen according to the board-->
     <subsystem name="control"/>
     <!-- Sensors -->
-  <!--  <subsystem name="imu" type="b2_v1.0"/> -->
-    <subsystem name="imu"     type="aspirin2_i2c"/>
-    <subsystem name="ahrs"  type="float_dcm"/>
+    <subsystem name="imu" type="b2_v1.0"/> 
+  <!--   <subsystem name="imu"     type="aspirin2_i2c"/> 
+    <subsystem name="ahrs" type="int_cmpl_euler"/> -->
+    <!--  <subsystem name="ins" type="hff"/> -->
+    <subsystem name="ahrs"  type="float_dcm"/> 
     <subsystem name="gps"       type="ublox"/>
       <configure name="GPS_BAUD"      value="B38400"/>
       <configure name="GPS_PORT"      value="UART1"/>

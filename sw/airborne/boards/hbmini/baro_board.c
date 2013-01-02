@@ -284,6 +284,8 @@ void baro_bmp_event( void ) {
       baro_bmp_temperature = bmp_t;
       baro_bmp_pressure = bmp_p;
 
+      DOWNLINK_SEND_BMP_STATUS(DefaultChannel, DefaultDevice, &bmp_up, &bmp_ut, &bmp_p, &bmp_t);
+
       tmp_float = bmp_p/101325.0; //pressao nivel mar
       tmp_float = pow(tmp_float,0.190295); //eleva pressao ao expoente
       baro_bmp = 44330*(1.0-tmp_float);
@@ -332,11 +334,13 @@ baro_board.data_available = TRUE;
 baro_board.value_filtered = bmp_p;
 baro_board.offset = baro_bmp_offset;
 
-//baro_periodic();
+baro_periodic();
         DOWNLINK_SEND_BMP_STATUS(DefaultChannel, DefaultDevice, &bmp_up, &bmp_ut, &bmp_p, &bmp_t);
-// DOWNLINK_SEND_BARO_BMP85_CALIB(DefaultChannel, DefaultDevice, &bmp_ac1, &bmp_ac2, &bmp_ac3, &bmp_ac4, &bmp_ac5, &bmp_ac6, &bmp_b1, &bmp_b2, &bmp_mb,&bmp_mc, &bmp_md);
+
+        DOWNLINK_SEND_BARO_BMP85_CALIB(DefaultChannel, DefaultDevice, &bmp_ac1, &bmp_ac2, &bmp_ac3, &bmp_ac4, &bmp_ac5, &bmp_ac6, &bmp_b1, &bmp_b2, &bmp_mb,&bmp_mc, &bmp_md);
 #if BOARD_HAS_BARO
 #include "subsystems/sensors/baro.h"
+
     baro.absolute = bmp_p;
     baro.differential = bmp_t;
     baro.status = BS_RUNNING;

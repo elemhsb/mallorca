@@ -9,7 +9,7 @@
     <file name="mag_hmc5843.h"/>
   </header>
   <init fun="hmc5843_module_init()"/>
-  <periodic fun="hmc5843_module_periodic()" freq="20"/>
+  <periodic fun="hmc5843_module_periodic()" freq="10"/>
   <event fun="hmc5843_module_event()"/>
   <makefile>
     <define name="USE_I2C" />
