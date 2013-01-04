@@ -44,7 +44,7 @@
    ac_id="3"
    airframe="airframes/HB/fixed-wing/hbmini_v3_funjet.xml"
    radio="radios/HB/mc15.xml"
-   telemetry="telemetry/default_fixedwing.xml"
+   telemetry="telemetry/default_fixedwing_imu.xml"
    flight_plan="flight_plans/HB/stieglitz.xml"
    settings=" settings/fixedwing_basic.xml"
    gui_color="#ffff323842f4"
@@ -72,7 +72,7 @@
   <aircraft
    name="HBMINI_V3"
    ac_id="13"
-   airframe="airframes/HB/rotor/hbmini_v3.xml"
+   airframe="airframes/HB/fixed-wing/hbmini_v3_funjet.xml"
    radio="radios/HB/mc15.xml"
    telemetry="telemetry/default_rotorcraft.xml"
    flight_plan="flight_plans/HB/stieglitz.xml"
@@ -170,6 +170,16 @@
    gui_color="#ba6293"
   />
   <aircraft
+   name="TwinstarHB"
+   ac_id="17"
+   airframe="airframes/HB/fixed-wing/twinstarHB.xml"
+   radio="radios/HB/mc15.xml"
+   telemetry="telemetry/default_fixedwing_imu.xml"
+   flight_plan="flight_plans/basic.xml"
+   settings=" settings/fixedwing_basic.xml"
+   gui_color="blue"
+  />
+  <aircraft
    name="Twog_IMU"
    ac_id="7"
    airframe="airframes/examples/twog_analogimu.xml"
@@ -193,7 +203,7 @@
    name="Umarim_Lite_HB"
    ac_id="21"
    airframe="airframes/ENAC/fixed-wing/firestorm.xml"
-   radio="radios/HB/cockpitSXa.xml"
+   radio="radios/HB/mc15.xml"
    telemetry="telemetry/default_fixedwing_imu.xml"
    flight_plan="flight_plans/basic.xml"
    settings=" settings/fixedwing_basic.xml"
