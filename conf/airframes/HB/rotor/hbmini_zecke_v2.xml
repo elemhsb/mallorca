@@ -5,6 +5,10 @@
  <!-- HBmini17_V2  with 1168  IDG500 ISZ505
     Heinrich Warmers  11/2012
     quadrocopter with mirkokopter motor controller over i2c
+    Heinrich Fischer Zecke 
+      HBminiV2 MX16 with 2.4Ghz 
+      Jeti Motor roxi1815-25 WI232 
+      Hype 6a with quax software 
 -->
 <modules main_freq="512">
     <!--load name="booz_pwm.xml">
@@ -15,16 +19,16 @@
    <load name="mag_hmc5843_i2c1.xml"/>
        <!--  <load name="baro_bmp.xml"/>   --> 
  <load name="bat_checker.xml"/> 
-    <!--  <load name="gps_ubx_ucenter.xml"/>   --> 
+  <!-- <load name="gps_ubx_ucenter.xml"/>  --> 
   </modules>
 
-
   <servos>
-    <servo name="FRONT" no="0" min="0" neutral="0" max="255"/>
-    <servo name="BACK" no="1" min="0" neutral="0" max="255"/>
-    <servo name="RIGHT" no="2" min="0" neutral="0" max="255"/>
-    <servo name="LEFT" no="3" min="0" neutral="0" max="255"/>
+    <servo name="NW" no="2" min="0" neutral="0" max="255"/>
+    <servo name="SE" no="3" min="0" neutral="0" max="255"/>
+    <servo name="NE" no="1" min="0" neutral="0" max="255"/>
+    <servo name="SW" no="0" min="0" neutral="0" max="255"/>
   </servos>
+ 
 
   <commands>
     <axis name="PITCH" failsafe_value="0"/>
@@ -39,17 +43,17 @@
   </section>
 
   <section name="SUPERVISION" prefix="SUPERVISION_">
-    <define name="MIN_MOTOR" value="2"/>
-    <define name="MAX_MOTOR" value="210"/>
+    <define name="MIN_MOTOR" value="22"/>
+    <define name="MAX_MOTOR" value="250"/>
     <define name="TRIM_A" value="0"/>
     <define name="TRIM_E" value="0"/>
     <define name="TRIM_R" value="0"/>
     <define name="NB_MOTOR" value="4"/>
     <define name="SCALE" value="256"/>
-    <define name="ROLL_COEF" value="{    0,    0, -256,  256}"/>
-    <define name="PITCH_COEF" value="{  256, -256,    0,    0}"/>
-    <define name="YAW_COEF" value="{ -256, -256,  256,  256}"/>
-    <define name="THRUST_COEF" value="{ 256,  256,  256,  256}"/>
+    <define name="ROLL_COEF" value="{  256, -256, -256,  256 }"/>
+    <define name="PITCH_COEF" value="{  256, -256,  256, -256 }"/>
+    <define name="YAW_COEF" value="{  256,  256, -256, -256 }"/>
+    <define name="THRUST_COEF" value="{  256,  256,  256,  256 }"/>
   </section>
 
   <section name="IMU" prefix="IMU_">
@@ -69,7 +73,7 @@
     <define name="ACCEL_Z_SENS" value="1.94" integer="16"/>
 -->
 <!-- Nr.2 -->
-    <define name="ACCEL_X_NEUTRAL" value="26020"/>
+<!--   <define name="ACCEL_X_NEUTRAL" value="26020"/>
     <define name="ACCEL_Y_NEUTRAL" value="26400"/>
     <define name="ACCEL_Z_NEUTRAL" value="26400"/>
     <define name="ACCEL_X_SENS" value="1.94" integer="16"/>
@@ -131,7 +135,7 @@
     <define name="GYRO_R_SENS" value=" 2.217" integer="16"/> 
 -->
 
-<!--    Nr.4
+<!--    Nr.4-->
 
    <define name="ACCEL_X_NEUTRAL" value="26305"/>
     <define name="ACCEL_Y_NEUTRAL" value="26148"/>
@@ -153,7 +157,7 @@
     <define name="GYRO_P_SENS" value=" 2.217" integer="16"/>
     <define name="GYRO_Q_SENS" value=" 2.217" integer="16"/>
     <define name="GYRO_R_SENS" value=" 2.217" integer="16"/>
--->
+
 
 <!--     Nr. 5 
  <define name="ACCEL_X_NEUTRAL" value="26430"/>
@@ -346,12 +350,12 @@
  </section>
 
  <section name="BAT">
-   <define name="CATASTROPHIC_BAT_LEVEL" value="9.3" unit="V"/>
+   <define name="CATASTROPHIC_BAT_LEVEL" value="5.7" unit="V"/>
  </section>
 
  <section name="AUTOPILOT">
    <define name="MODE_MANUAL" value="AP_MODE_ATTITUDE_DIRECT"/>
-   <define name="MODE_AUTO1" value="AP_MODE_HOVER_Z_HOLD"/>
+   <define name="MODE_AUTO1" value="AP_MODE_ATTITUDE_Z_HOLD"/>
    <define name="MODE_AUTO2" value="AP_MODE_HOVER_Z_HOLD"/>
  </section>
 
@@ -376,17 +380,17 @@
     <define name="USE_ATTITUDE_REF" value="0"/>
     <target name="ap" board="hbmini_2.0">
       <define name="CS_74138" value="1"/>
-	  <define name="IMU_HBMINI_I_VERSION_1_0" value="1"/>
+      <define name="IMU_HBMINI_I_VERSION_1_0" value="1"/>
       <define name="BMP_I2C_DEV" value="i2c1"/>
       <define name="SENSOR_SYNC_SEND" value="1"/>
       <define name="FAILSAFE_GROUND_DETECT"/>
       <define name="USE_GPS_ACC4R"/>
-      <define name="CRITIC_BAT_LEVEL" value="9.3"/>
-       <define name="LOW_BAT_LEVEL" value="9.7"/>
+      <define name="CRITIC_BAT_LEVEL" value="6.2"/>
+       <define name="LOW_BAT_LEVEL" value="6.6"/>
        <define name="BAT_CHECKER_LED" value="3"/>
        <define name="INVERT_BAT_LED" value="1"/>
        <define name="USE_LED_6" value="1"/>
-       <define name="BAT_CHECKER_DELAY" value="2"/>
+       <define name="BAT_CHECKER_DELAY" value="3"/>
        <define name="HBminiBMP" value="1"/>
 	<!--<define name="BOARD_HAS_BARO" value="1"/>  -->
 <!--
