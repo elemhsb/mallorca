@@ -186,4 +186,4 @@ sw/logalizer/plotprofile.dSYM/Contents/Info.plist
 # HB
 /bin
 /ENV
-openocd.log
+/openocd.*
