@@ -182,3 +182,8 @@ tests/results/*
 sw/logalizer/plotprofile.dSYM/Contents/Resources/DWARF/plotprofile
 
 sw/logalizer/plotprofile.dSYM/Contents/Info.plist
+
+# HB
+/bin
+/ENV
+openocd.log
