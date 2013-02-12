@@ -42,14 +42,14 @@ Note: a command may be reversed by exchanging min and max values
 -->
 
 <!DOCTYPE radio SYSTEM "../radio.dtd">
-<radio name="GraupnerMC15" data_min="900" data_max="2100" sync_min="5000" sync_max="15000" pulse_type="NEGATIVE">
-<channel ctl="D" function="PITCH"     min="1879" neutral="1498" max="1100" average="0"/>
- <channel ctl="C" function="ROLL"      min="1890" neutral="1498" max="1100" average="0"/>
- <channel ctl="B" function="THROTTLE"  min="1100" neutral="1100" max="1890" average="0"/>
- <channel ctl="A" function="YAW"       min="1898" neutral="1500" max="1096" average="0"/>
- <channel ctl="G" function="CALIB"    min="1890" neutral="1500" max="1100" average="0"/>
- <channel ctl="E" function="MODE"      min="1902" neutral="1498" max="1096" average="1"/>
- <channel ctl="F" function="GAINI"     min="1100" neutral="1490" max="1880" average="0"/>
-<channel ctl="H" function="UNUSED1"  min="1900" neutral="1500" max="1100" average="0"/>
+<radio name="GraupnerMX16" data_min="900" data_max="2100" sync_min="5000" sync_max="15000" pulse_type="NEGATIVE">
+ <channel ctl="D" function="PITCH"      min="1879" neutral="1498" max="1100" average="0"/>
+ <channel ctl="C" function="ROLL"       min="1890" neutral="1498" max="1100" average="0"/>
+ <channel ctl="B" function="THROTTLE"   min="1100" neutral="1100" max="1890" average="0"/>
+ <channel ctl="A" function="YAW"        min="1898" neutral="1500" max="1096" average="0"/>
+ <channel ctl="G" function="CALIB"      min="1890" neutral="1500" max="1100" average="0"/>
+ <channel ctl="E" function="MODE"       min="1902" neutral="1498" max="1096" average="1"/>
+ <channel ctl="F" function="GAINI"      min="1100" neutral="1490" max="1880" average="0"/>
+ <channel ctl="H" function="KILLSWITCH" min="1100" neutral="1500" max="1900" average="0"/>
  
 </radio>
