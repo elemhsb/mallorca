@@ -5,28 +5,28 @@
  <!-- HBmini17_V2  with 1168  IDG500 ISZ505
     Heinrich Warmers  11/2012
     quadrocopter with mirkokopter motor controller over i2c
-    Heinrich Fischer Zecke 
-      HBminiV2 MX16 with 2.4Ghz 
-      Jeti Motor roxi1815-25 WI232 
-      Hype 6a with quax software 
+    Heinrich Fischer Wanze 
+    HBminiV2 MX16 with 2.4Ghz Jeti 
+    Motor roxi1815-25 WI232 
+    Hype 6a with quax software 
 -->
-<modules main_freq="512">
+  <modules main_freq="512">
     <!--load name="booz_pwm.xml">
-      <define name="USE_PWM1"/>
+    <define name="USE_PWM1"/>
     </load-->
     <!--load name="booz_drop.xml"/>
     <load name="booz_cam.xml"/-->
-   <load name="mag_hmc5843_i2c1.xml"/>
-       <!--  <load name="baro_bmp.xml"/>   --> 
- <load name="bat_checker.xml"/> 
-  <!-- <load name="gps_ubx_ucenter.xml"/>  --> 
+    <load name="mag_hmc5843_i2c1.xml"/>
+    <!--  <load name="baro_bmp.xml"/>   --> 
+    <load name="bat_checker.xml"/> 
+    <!-- <load name="gps_ubx_ucenter.xml"/>  --> 
   </modules>
 
   <servos>
-    <servo name="NW" no="2" min="0" neutral="0" max="255"/>
-    <servo name="SE" no="3" min="0" neutral="0" max="255"/>
-    <servo name="NE" no="1" min="0" neutral="0" max="255"/>
-    <servo name="SW" no="0" min="0" neutral="0" max="255"/>
+    <servo name="NW" no="0" min="0" neutral="0" max="255"/>
+    <servo name="SE" no="1" min="0" neutral="0" max="255"/>
+    <servo name="NE" no="2" min="0" neutral="0" max="255"/>
+    <servo name="SW" no="3" min="0" neutral="0" max="255"/>
   </servos>
  
 
@@ -39,25 +39,25 @@
 
   <section name="ACTUATORS_MKK" prefix="ACTUATORS_MKK_">
     <define name="NB" value="4"/>
-    <define name="ADDR" value="{ 0x52, 0x54, 0x56, 0x58 }"/>
+    <define name="ADDR" value="{ 0x54, 0x58, 0x52, 0x56 }"/>
   </section>
 
   <section name="SUPERVISION" prefix="SUPERVISION_">
     <define name="MIN_MOTOR" value="22"/>
-    <define name="MAX_MOTOR" value="250"/>
+    <define name="MAX_MOTOR" value="255"/>
     <define name="TRIM_A" value="0"/>
     <define name="TRIM_E" value="0"/>
     <define name="TRIM_R" value="0"/>
     <define name="NB_MOTOR" value="4"/>
     <define name="SCALE" value="256"/>
-    <define name="ROLL_COEF" value="{  256, -256, -256,  256 }"/>
-    <define name="PITCH_COEF" value="{  256, -256,  256, -256 }"/>
-    <define name="YAW_COEF" value="{  256,  256, -256, -256 }"/>
+    <define name="ROLL_COEF" value="{ -256, -256,  256,  256 }"/>
+    <define name="PITCH_COEF" value="{  256, -256, -256,  256 }"/>
+    <define name="YAW_COEF" value="{ -256,  256, -256,  256 }"/>
     <define name="THRUST_COEF" value="{  256,  256,  256,  256 }"/>
   </section>
 
   <section name="IMU" prefix="IMU_">
- <!--    Nr.1
+ <!-- Nr.1
     <define name="GYRO_P_NEUTRAL" value="20800"/>
     <define name="GYRO_Q_NEUTRAL" value="21650"/>
     <define name="GYRO_R_NEUTRAL" value="24300"/>
@@ -74,7 +74,13 @@
 -->
 <!-- Nr.2 -->
 <!--   <define name="ACCEL_X_NEUTRAL" value="26020"/>
-    <define name="ACCEL_Y_NEUTRAL" value="26400"/>
+    <define name="ACCEL_Y_NEUTRAL" value="26400"/><servos>
+    <servo name="NW" no="0" min="0" neutral="0" max="255"/>
+    <servo name="SE" no="1" min="0" neutral="0" max="255"/>
+    <servo name="NE" no="2" min="0" neutral="0" max="255"/>
+    <servo name="SW" no="3" min="0" neutral="0" max="255"/>
+  </servos>
+
     <define name="ACCEL_Z_NEUTRAL" value="26400"/>
     <define name="ACCEL_X_SENS" value="1.94" integer="16"/>
     <define name="ACCEL_Y_SENS" value="1.94" integer="16"/>
@@ -111,7 +117,7 @@
     <define name="GYRO_R_SENS" value=" 0.91" integer="16"/> 
 -->
 
-<!--	Nr.3
+<!-- Nr.3
 
     <define name="ACCEL_X_NEUTRAL" value="26240"/>
     <define name="ACCEL_Y_NEUTRAL" value="26182"/>
@@ -135,11 +141,11 @@
     <define name="GYRO_R_SENS" value=" 2.217" integer="16"/> 
 -->
 
-<!--    Nr.4-->
+<!-- Nr.4-->
 
-   <define name="ACCEL_X_NEUTRAL" value="26305"/>
-    <define name="ACCEL_Y_NEUTRAL" value="26148"/>
-    <define name="ACCEL_Z_NEUTRAL" value="26840"/>
+   <define name="ACCEL_X_NEUTRAL" value="26405"/>
+    <define name="ACCEL_Y_NEUTRAL" value="26179"/>
+    <define name="ACCEL_Z_NEUTRAL" value="26600"/>
     <define name="ACCEL_X_SENS" value="1.895" integer="16"/>
     <define name="ACCEL_Y_SENS" value="1.8260" integer="16"/>
     <define name="ACCEL_Z_SENS" value="1.8750" integer="16"/>
@@ -151,15 +157,15 @@
     <define name="MAG_Y_SENS" value="3.46530554418" integer="16"/>
     <define name="MAG_Z_SENS" value="4.13251329042" integer="16"/>
 
-    <define name="GYRO_P_NEUTRAL" value="22840"/>
-    <define name="GYRO_Q_NEUTRAL" value="22520"/>
-    <define name="GYRO_R_NEUTRAL" value="21705"/>
+    <define name="GYRO_P_NEUTRAL" value="22935"/>
+    <define name="GYRO_Q_NEUTRAL" value="22645"/>
+    <define name="GYRO_R_NEUTRAL" value="21695"/>
     <define name="GYRO_P_SENS" value=" 2.217" integer="16"/>
     <define name="GYRO_Q_SENS" value=" 2.217" integer="16"/>
     <define name="GYRO_R_SENS" value=" 2.217" integer="16"/>
 
 
-<!--     Nr. 5 
+<!-- Nr. 5 
  <define name="ACCEL_X_NEUTRAL" value="26430"/>
     <define name="ACCEL_Y_NEUTRAL" value="26282"/>
     <define name="ACCEL_Z_NEUTRAL" value="26815"/>
@@ -209,7 +215,7 @@
    <define name="BODY_TO_IMU_PSI" value="0." unit="deg"/>
 -->
 
-<!--  Nr. 7 
+<!-- Nr. 7 
 
   
     <define name="ACCEL_X_NEUTRAL" value="26033"/>
@@ -259,8 +265,8 @@
     <define name="GYRO_R_SENS" value=" 2.217" integer="16"/> 
 -->
 
-   <define name="BODY_TO_IMU_PHI" value="0." unit="deg"/>
-   <define name="BODY_TO_IMU_THETA" value="0." unit="deg"/>
+   <define name="BODY_TO_IMU_PHI" value="-4.5" unit="deg"/>
+   <define name="BODY_TO_IMU_THETA" value="-2.7" unit="deg"/>
    <define name="BODY_TO_IMU_PSI" value="0." unit="deg"/>
 
   </section>
@@ -302,7 +308,7 @@
     <define name="REF_MAX_R" value="180." unit="deg/s"/>
     <define name="REF_MAX_RDOT" value="RadOfDeg(1800.)"/>
 
-    <!-- feedback -->
+    <!-- feedback Wanze Heinrich Fischer - Startwerte 
     <define name="PHI_PGAIN" value="800"/>
     <define name="PHI_DGAIN" value="600"/>
     <define name="PHI_IGAIN" value="100"/>
@@ -313,19 +319,63 @@
 
     <define name="PSI_PGAIN" value="800"/>
     <define name="PSI_DGAIN" value="600"/>
-    <define name="PSI_IGAIN" value="10"/>
+    <define name="PSI_IGAIN" value="10"/> -->
+
+    <!-- feedback Wanze Heinrich Fischer - Erprobung -->
+    <define name="PHI_PGAIN" value="500"/>
+    <define name="PHI_DGAIN" value="300"/>
+    <define name="PHI_IGAIN" value="50"/>
+
+    <define name="THETA_PGAIN" value="500"/>
+    <define name="THETA_DGAIN" value="300"/>
+    <define name="THETA_IGAIN" value="50"/>
+
+    <define name="PSI_PGAIN" value="350"/>
+    <define name="PSI_DGAIN" value="300"/>
+    <define name="PSI_IGAIN" value="50"/> 
+
+    <!-- feedback Wanze von Christoph 
+    <define name="PHI_PGAIN" value="600"/>
+    <define name="PHI_DGAIN" value="415"/>
+    <define name="PHI_IGAIN" value="100"/>
+
+    <define name="THETA_PGAIN" value="600"/>
+    <define name="THETA_DGAIN" value="415"/>
+    <define name="THETA_IGAIN" value="100"/>
+
+    <define name="PSI_PGAIN" value="513"/>
+    <define name="PSI_DGAIN" value="320"/>
+    <define name="PSI_IGAIN" value="75"/> -->
 
     <!-- feedforward -->
-    <define name="PHI_DDGAIN" value=" 300"/>
-    <define name="THETA_DDGAIN" value=" 300"/>
-    <define name="PSI_DDGAIN" value=" 300"/>
+    <define name="PHI_DDGAIN" value="300"/>
+    <define name="THETA_DDGAIN" value="300"/>
+    <define name="PSI_DDGAIN" value="300"/>
 
   </section>
 
   <section name="INS" prefix="INS_">
-    <define name="BARO_SENS" value="8.2296" integer="16"/>
+    <define name="BARO_SENS" value="20.8" integer="16"/>
   </section>
 
+
+
+  <section name="GUIDANCE_V" prefix="GUIDANCE_V_">
+   <define name="MIN_ERR_Z" value="POS_BFP_OF_REAL(-10.)"/>
+   <define name="MAX_ERR_Z" value="POS_BFP_OF_REAL( 10.)"/>
+   <define name="MIN_ERR_ZD" value="SPEED_BFP_OF_REAL(-10.)"/>
+   <define name="MAX_ERR_ZD" value="SPEED_BFP_OF_REAL( 10.)"/>
+   <define name="MAX_SUM_ERR" value="2000000"/>
+   <define name="HOVER_KP" value="70"/>
+   <define name="HOVER_KD" value="100"/>
+   <define name="HOVER_KI" value="9"/>
+   <!-- 1.5m/s for full stick : BOOZ_SPEED_I_OF_F(1.5) / (MAX_PPRZ/2) -->
+   <define name="RC_CLIMB_COEF" value="163"/>
+   <!-- BOOZ_SPEED_I_OF_F(1.5) * 20% -->
+   <define name="RC_CLIMB_DEAD_BAND" value="160000"/>
+<!--   <define name="INV_M" value ="0.2"/> -->
+  </section>
+<!--
   <section name="GUIDANCE_V" prefix="GUIDANCE_V_">
    <define name="MIN_ERR_Z" value="POS_BFP_OF_REAL(-10.)"/>
    <define name="MAX_ERR_Z" value="POS_BFP_OF_REAL( 10.)"/>
@@ -334,13 +384,13 @@
    <define name="MAX_SUM_ERR" value="2000000"/>
    <define name="HOVER_KP" value="500"/>
    <define name="HOVER_KD" value="200"/>
-   <define name="HOVER_KI" value="100"/>
+   <define name="HOVER_KI" value="100"/>-->
    <!-- 1.5m/s for full stick : BOOZ_SPEED_I_OF_F(1.5) / (MAX_PPRZ/2) -->
-   <define name="RC_CLIMB_COEF" value="163"/>
-   <!-- BOOZ_SPEED_I_OF_F(1.5) * 20% -->
-   <define name="RC_CLIMB_DEAD_BAND" value="160000"/>
+ <!--  <define name="RC_CLIMB_COEF" value="163"/>
+  <!--   BOOZ_SPEED_I_OF_F(1.5) * 20% -->
+  <!--  <define name="RC_CLIMB_DEAD_BAND" value="160000"/>
 <!--   <define name="INV_M" value ="0.2"/> -->
-  </section>
+ <!--  </section>-->
 
 
  <section name="GUIDANCE_H" prefix="GUIDANCE_H_">
@@ -386,12 +436,15 @@
       <define name="FAILSAFE_GROUND_DETECT"/>
       <define name="USE_GPS_ACC4R"/>
       <define name="CRITIC_BAT_LEVEL" value="6.2"/>
-       <define name="LOW_BAT_LEVEL" value="6.6"/>
-       <define name="BAT_CHECKER_LED" value="3"/>
-       <define name="INVERT_BAT_LED" value="1"/>
-       <define name="USE_LED_6" value="1"/>
-       <define name="BAT_CHECKER_DELAY" value="3"/>
-       <define name="HBminiBMP" value="1"/>
+      <define name="LOW_BAT_LEVEL" value="6.6"/>
+      <define name="BAT_CHECKER_LED" value="3"/>
+      <define name="INVERT_BAT_LED" value="1"/>
+      <define name="USE_LED_6" value="1"/>
+      <define name="BAT_CHECKER_DELAY" value="3"/>
+      <define name="HBminiBMP" value="1"/>
+      <define name="RADIO_KILL_SWITCH" value="RADIO_KILLSWITCH"/>
+      <define name="USE_KILL_SWITCH_FOR_MOTOR_ARMING" value="1"/>
+
 	<!--<define name="BOARD_HAS_BARO" value="1"/>  -->
 <!--
      <define name="USE_BARO_BMP" value="1"/>  -->

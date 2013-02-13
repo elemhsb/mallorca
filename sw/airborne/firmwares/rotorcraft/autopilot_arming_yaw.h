@@ -24,8 +24,8 @@
 
 #include "autopilot_rc_helpers.h"
 
-
-#define AUTOPILOT_MOTOR_ON_TIME     40
+// #define AUTOPILOT_MOTOR_ON_TIME     40  warmers
+#define AUTOPILOT_MOTOR_ON_TIME     5
 
 // Motors ON check state machine
 enum arming_state {
