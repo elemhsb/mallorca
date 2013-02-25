@@ -39,15 +39,15 @@ if [ ! -s $CONFIG_H ] ;  then
 fi
 
 # Symlink to User defined configuration
-OPENOCD_CFG=$PAPARAZZI_HOME/openocd.cfg
+OPENOCD_CFG=$OCDCONFDIR/openocd.cfg
 if [ ! -h $OPENOCD_CFG ] ; then
 	printf "Which version ARM-USB-OCD or ARM-USB-OCD-H as default ?\n"
 	printf "<return> | [hH]"
 	read a
 	if [ "$a" = "h" ] || [ "$a" = "H" ] ; then
-		ln -s $CONFIG_H $OPENOCD_CFG
+		ln -s $( basename $CONFIG_H ) $OPENOCD_CFG
 	else
-		ln -s $CONFIG $OPENOCD_CFG
+		ln -s $( basename $CONFIG ) $OPENOCD_CFG
 	fi
 fi
 
