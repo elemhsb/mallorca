@@ -34,7 +34,6 @@ SRC_ARCH = arch/lpc21
 # Launch with "make Q=''" to get full command display
 Q=@
 
-
 #
 # find compiler toolchain
 #

@@ -41,6 +41,7 @@
 #define IMU_GYRO_P_CHAN  3
 #define IMU_GYRO_Q_CHAN  4
 #define IMU_GYRO_R_CHAN  5
+#define IMU_GYRO_TEMP_CHAN 6
 #endif
 #if !defined IMU_ACCEL_X_CHAN & !defined IMU_ACCEL_Y_CHAN & !defined IMU_ACCEL_Z_CHAN
 #define IMU_ACCEL_X_CHAN 0
@@ -238,6 +239,7 @@
       imu.gyro_unscaled.p  = max1168_values[IMU_GYRO_P_CHAN]; \
       imu.gyro_unscaled.q  = max1168_values[IMU_GYRO_Q_CHAN]; \
       imu.gyro_unscaled.r  = max1168_values[IMU_GYRO_R_CHAN]; \
+      imu.temp  = max1168_values[IMU_GYRO_TEMP_CHAN]; \
       imu.accel_unscaled.x = max1168_values[IMU_ACCEL_X_CHAN]; \
       imu.accel_unscaled.y = max1168_values[IMU_ACCEL_Y_CHAN]; \
       imu.accel_unscaled.z = max1168_values[IMU_ACCEL_Z_CHAN]; \

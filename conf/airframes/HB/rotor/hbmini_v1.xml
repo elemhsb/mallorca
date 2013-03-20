@@ -12,17 +12,10 @@
     <!--load name="booz_drop.xml"/>
     <load name="booz_cam.xml"/-->
     <load name="mag_hmc5843_i2c1.xml"/>
-    <load name="baro_bmp.xml"/>
+   <!--  <load name="baro_bmp.xml"/> -->
     <load name="gps_ubx_ucenter.xml"/>
     <load name="bat_checker.xml"/> 
   </modules>
-
-<bat_checker>
-    <define name="CRITIC_BAT_LEVEL" value="9.6"/>
-    <define name="BAT_CHECKER_LED" value="3"/>
-    <define name="BAT_CHECKER_DELAY" value="3"/>
-    <define name="LOW_BAT_LEVEL" value="9.3"/>
-</bat_checker>
 
   <servos>
     <servo name="FRONT" no="0" min="0" neutral="0" max="255"/>
@@ -42,6 +35,13 @@
     <define name="NB" value="4"/>
     <define name="ADDR" value="{ 0x52, 0x54, 0x56, 0x58 }"/>
   </section>
+
+<section name="BAT"> 
+    <define name="CRITIC_BAT_LEVEL" value="9.6"/>
+    <define name="BAT_CHECKER_LED" value="3"/>
+    <define name="BAT_CHECKER_DELAY" value="3"/>
+    <define name="LOW_BAT_LEVEL" value="9.3"/>
+</section>
 
   <section name="SUPERVISION" prefix="SUPERVISION_">
     <define name="MIN_MOTOR" value="2"/>
@@ -232,6 +232,8 @@
       <define name="BAT_CHECKER_DELAY" value="3"/>
       <define name="LOW_BAT_LEVEL" value="9.6"/>
       <define name="INVERT_BAT_LED" value="1"/>
+      <define name="HBminiBMP" value="1"/>
+
  <!--
      <define name="USE_BARO_BMP" value="1"/>  -->
     </target>

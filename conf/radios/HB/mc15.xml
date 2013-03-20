@@ -47,8 +47,8 @@ Note: a command may be reversed by exchanging min and max values
  <channel ctl="C" function="ROLL"      min="1860" neutral="1480" max="1130" average="0"/>
  <channel ctl="B" function="THROTTLE"  min="1130" neutral="1130" max="1830" average="0"/>
  <channel ctl="A" function="YAW"       min="1800" neutral="1500" max="1200" average="0"/>
- <channel ctl="G" function="RADIO_GEAR" min="1890" neutral="1500" max="1100" average="0"/>
- <channel ctl="E" function="MODE"      min="1840" neutral="1470" max="1140" average="1"/>
+ <channel ctl="G" function="MODE" min="1890" neutral="1500" max="1100" average="0"/>
+ <channel ctl="E" function="RADIO_GEAR"      min="1840" neutral="1470" max="1140" average="1"/>
  <channel ctl="f" function="GAINI"     min="1100" neutral="1490" max="1880" average="0"/>
  <!-- channel 9 is transmitted but cannot be controlled -->
 </radio>

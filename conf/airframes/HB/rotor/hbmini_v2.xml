@@ -15,7 +15,7 @@
    <load name="mag_hmc5843_i2c1.xml"/>
        <!--  <load name="baro_bmp.xml"/>   --> 
  <load name="bat_checker.xml"/> 
-    <!--  <load name="gps_ubx_ucenter.xml"/>   --> 
+   <load name="gps_ubx_ucenter.xml"/>    
   </modules>
 
 
@@ -350,8 +350,8 @@
  </section>
 
  <section name="AUTOPILOT">
-   <define name="MODE_MANUAL" value="AP_MODE_KILL"/>
-   <define name="MODE_AUTO1" value="AP_MODE_ATTITUDE_DIRECT"/>
+   <define name="MODE_MANUAL" value="AP_MODE_ATTITUDE_DIRECT"/>
+   <define name="MODE_AUTO1" value="AP_MODE_ATTITUDE_Z_HOLD"/>
    <define name="MODE_AUTO2" value="AP_MODE_HOVER_Z_HOLD"/>
  </section>
 
@@ -390,6 +390,13 @@
        <define name="USE_LED_6" value="1"/>
        <define name="BAT_CHECKER_DELAY" value="2"/>
        <define name="HBminiBMP" value="1"/>
+       <define name="DXA" value="-0.0785"/>
+       <define name="DYA" value="-0.0338"/>
+       <define name="DZA" value="-0.171"/> 
+       <define name="DXG" value="0.1301"/>
+       <define name="DYG" value="-0.1592"/>
+       <define name="DZG" value="-0.0"/>
+       <define name="TREF" value="19420"/>
 	<!--<define name="BOARD_HAS_BARO" value="1"/>  -->
 <!--
      <define name="USE_BARO_BMP" value="1"/>  -->
