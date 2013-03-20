@@ -17,6 +17,15 @@
     <load name="bat_checker.xml"/> 
   </modules>
 
+<!-- olri
+<bat_checker>
+    <define name="CRITIC_BAT_LEVEL" value="9.6"/>
+    <define name="BAT_CHECKER_LED" value="3"/>
+    <define name="BAT_CHECKER_DELAY" value="3"/>
+    <define name="LOW_BAT_LEVEL" value="9.3"/>
+</bat_checker>
+-->
+
   <servos>
     <servo name="FRONT" no="0" min="0" neutral="0" max="255"/>
     <servo name="BACK" no="1" min="0" neutral="0" max="255"/>
