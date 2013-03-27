@@ -50,26 +50,53 @@ PRINT_CONFIG_VAR(BAT_CHECKER_DELAY)
 
 void init_bat_checker(void) {
   LED_INIT(BAT_CHECKER_LED);
+  LED_INIT(1);
+  LED_INIT(2);
+LED_OFF(BAT_CHECKER_LED);
+LED_OFF(1);
+LED_OFF(2);
+//LED_TOGGLE(1);
+//LED_TOGGLE(2);
+#ifndef INVERT_BAT_LED
   LED_OFF(BAT_CHECKER_LED);
+#else
+  LED_ON(BAT_CHECKER_LED);
+#endif
+LED_TOGGLE(BAT_CHECKER_LED);
+
+  
+
 }
 
 void bat_checker_periodic(void) {
   static uint8_t bat_low_counter = 0;
+
   if(electrical.vsupply < WARN_BAT_LEVEL1) {
     if(bat_low_counter)
       bat_low_counter--;
   } else {
     bat_low_counter = BAT_CHECKER_DELAY * BAT_CHECKER_PERIODIC_FREQ;
   }
-
+//LED_TOGGLE(BAT_CHECKER_LED);
+//LED_TOGGLE(1);
+//LED_TOGGLE(2);
+//LED_OFF(BAT_CHECKER_LED);
+//return;
   if(!bat_low_counter) {
     if(electrical.vsupply < WARN_BAT_LEVEL2) {
-      LED_ON(BAT_CHECKER_LED);
+#ifndef INVERT_BAT_LED
+     LED_ON(BAT_CHECKER_LED);
+#else
+     LED_OFF(BAT_CHECKER_LED);
+#endif
     } else if(electrical.vsupply < WARN_BAT_LEVEL1) {
-      LED_TOGGLE(BAT_CHECKER_LED);
+     LED_TOGGLE(BAT_CHECKER_LED);
     }
   } else {
-    LED_OFF(BAT_CHECKER_LED);
+#ifndef INVERT_BAT_LED
+      LED_OFF(BAT_CHECKER_LED);
+#else
+      LED_ON(BAT_CHECKER_LED);
+#endif
   }
 }
-

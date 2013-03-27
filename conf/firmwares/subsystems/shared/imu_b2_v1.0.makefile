@@ -50,6 +50,11 @@ imu_srcs += peripherals/ami601.c
 
 ifeq ($(ARCH), lpc21)
 imu_CFLAGS += -DUSE_I2C1  -DI2C1_SCLL=150 -DI2C1_SCLH=150
+ifeq ($(BOARD), hbmini)
+imu_CFLAGS += -DIMU_B2_MAG_TYPE=IMU_B2_MAG_HMC5843
+imu_CFLAGS += -DHMC58XX_I2C_DEVICE=i2c1 -DUSE_I2C1 -DI2C1_VIC_SLOT=12 -DHMC5843_NO_IRQ
+imu_srcs += peripherals/hmc58xx.c
+endif
 else ifeq ($(ARCH), stm32)
 #FIXME: untested
 imu_CFLAGS += -DUSE_I2C2

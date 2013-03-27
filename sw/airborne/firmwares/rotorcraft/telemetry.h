@@ -160,12 +160,14 @@
                 &imu.mag.y,			\
                 &imu.mag.z);			\
   }
+/*            &imu.gyro_unscaled.r,         \ */
 
 #define PERIODIC_SEND_IMU_GYRO_RAW(_trans, _dev) {				\
     DOWNLINK_SEND_IMU_GYRO_RAW(_trans, _dev,					\
                    &imu.gyro_unscaled.p,		\
                    &imu.gyro_unscaled.q,		\
-                   &imu.gyro_unscaled.r);		\
+				   &imu.gyro_unscaled.r,		\
+				   &imu.temp);	            	\
   }
 
 #define PERIODIC_SEND_IMU_ACCEL_RAW(_trans, _dev) {				\

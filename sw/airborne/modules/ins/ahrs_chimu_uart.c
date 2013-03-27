@@ -10,7 +10,6 @@
 
 // For centripedal corrections
 #include "subsystems/gps.h"
-#include "subsystems/ahrs.h"
 
 #include "generated/airframe.h"
 

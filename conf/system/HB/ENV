@@ -1,0 +1,9 @@
+export PAPARAZZI_HOME=`pwd`;
+export PAPARAZZI_SRC=$PAPARAZZI_HOME;
+export EDITOR=gedit
+export LD_LIBRARY_PATH=/opt/jsbsim/lib
+export MANPATH=$MANPATH:/opt/paparazzi/arm-multilib/share/man
+
+if [ "$AIRCRAFT" = "" ] ; then
+	export AIRCRAFT=HBMINI_V2
+fi

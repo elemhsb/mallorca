@@ -48,6 +48,7 @@
 /sw/lib/ocaml/ivy/debian/changelog
 /sw/lib/ocaml/ivy/debian/files
 /sw/lib/ocaml/ivy/debian/ivy-ocaml
+/sw/ext
 
 /var
 /dox
@@ -185,3 +186,8 @@ tests/results/*
 sw/logalizer/plotprofile.dSYM/Contents/Resources/DWARF/plotprofile
 
 sw/logalizer/plotprofile.dSYM/Contents/Info.plist
+
+# HB
+/bin
+/ENV
+/openocd.*

@@ -91,7 +91,6 @@ ABI_MESSAGES_H=$(STATICINCLUDE)/abi_messages.h
 
 GEN_HEADERS = $(MESSAGES_H) $(MESSAGES2_H) $(UBX_PROTOCOL_H) $(MTK_PROTOCOL_H) $(XSENS_PROTOCOL_H) $(DL_PROTOCOL_H) $(DL_PROTOCOL2_H) $(ABI_MESSAGES_H)
 
-
 # default directory for temporary files
 TMPDIR ?= /tmp
 
@@ -109,7 +108,6 @@ conf: conf/conf.xml conf/control_panel.xml conf/maps.xml
 
 conf/%.xml :conf/%.xml.example
 	[ -L $@ ] || [ -f $@ ] || cp $< $@
-
 
 ground_segment: print_build_version update_google_version conf lib subdirs commands static
 
@@ -271,7 +269,6 @@ run_tests:
 	cd tests; $(MAKE) test
 
 test: all replace_current_conf_xml run_tests restore_conf_xml
-
 
 .PHONY: all print_build_version update_google_version ground_segment \
 subdirs $(SUBDIRS) conf ext lib multimon cockpit tmtc tools\

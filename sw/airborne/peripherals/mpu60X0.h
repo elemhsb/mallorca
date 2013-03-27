@@ -5,6 +5,11 @@
 #define MPU60X0_ADDR            0xD0
 #define MPU60X0_ADDR_ALT        0xD2
 
+#if DROTEK_IMU
+#undef MPU60X0_ADDR
+#define MPU60X0_ADDR MPU60X0_ADDR_ALT
+#endif
+
 #define MPU60X0_SPI_READ	0x80
 
 // Power and Interface

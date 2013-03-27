@@ -31,6 +31,7 @@ uint8_t servos_4017_idx;
 void actuators_4017_init ( void ) {
   /* select clock pin as MAT0.1 output */
   IO0DIR |= _BV(SERVO_CLOCK_PIN);
+  SERVO_CLOCK_PINSEL &= ~(3<<SERVO_CLOCK_PINSEL_BIT);
   SERVO_CLOCK_PINSEL |= SERVO_CLOCK_PINSEL_VAL << SERVO_CLOCK_PINSEL_BIT;
 
   /* select reset pin as GPIO output */

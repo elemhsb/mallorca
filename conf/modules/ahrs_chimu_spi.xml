@@ -6,7 +6,7 @@
   </doc>
   <!-- <depend conflict="ins" -->
   <header>
-    <file name="ins_module.h"/>
+    <file name="ins_chimu_spi.h"/>
   </header>
   <event fun="parse_ins_msg()"/>
   <makefile target="ap">

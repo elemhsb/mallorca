@@ -82,7 +82,6 @@ void imu_impl_init(void) {
 
 void imu_periodic(void)
 {
-
   if (imu_aspirin2.status == Aspirin2StatusUninit) {
     mpu_configure();
     imu_aspirin2.status = Aspirin2StatusIdle;
@@ -207,8 +206,11 @@ static void mpu_configure(void)
            (3 << 3) );			// Full Scale = 16g
 
 #ifndef MPU6000_NO_SLAVES
+<<<<<<< HEAD
 PRINT_CONFIG_MSG("Reading MPU slaves")
 
+=======
+>>>>>>> v4.0
   /////////////////////////////////////
   // SPI Slave Configuration Section
 
@@ -292,6 +294,7 @@ PRINT_CONFIG_MSG("Reading MPU slaves")
            (0 << 6) |		// Byte Swap
            (6 << 0) );		// Read 6 bytes
 
+<<<<<<< HEAD
 	// Slave 0 Control:
 
 #if defined IMU_ASPIRIN_VERSION_2_1 && USE_IMU_ASPIRIN2_BARO_SLAVE
@@ -340,7 +343,10 @@ PRINT_CONFIG_MSG("Reading the MS5611 as MPU slave")
 
 #endif // read MS5611 as MPU slave
 
+=======
+  // Slave 0 Control:
+#else
+  hmc5843_init();
+>>>>>>> v4.0
 #endif
-
 }
-

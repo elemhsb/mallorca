@@ -1724,6 +1724,7 @@
     <field name="gp" type="int32" unit="adc"/>
     <field name="gq" type="int32" unit="adc"/>
     <field name="gr" type="int32" unit="adc"/>
+     <field name="te" type="int32" unit="adc"/>
   </message>
 
   <message name="IMU_ACCEL_RAW" id="204">

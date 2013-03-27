@@ -23,6 +23,9 @@
 #include "subsystems/datalink/downlink.h"
 #include <math.h>
 
+#include "generated/airframe.h"
+#include "subsystems/imu.h"
+
 #include "../../peripherals/hmc5843.h"
 
 
@@ -46,6 +49,7 @@ void hmc5843_module_periodic ( void )
   mag_y = hmc5843.data.value[1];
   mag_z = hmc5843.data.value[2];
   RunOnceEvery(30,DOWNLINK_SEND_IMU_MAG_RAW(DefaultChannel, DefaultDevice,&mag_x,&mag_y,&mag_z));
+  VECT3_ASSIGN(imu.mag_unscaled, mag_z, mag_x, mag_y); // WARM
 }
 
 void hmc5843_module_event( void )
