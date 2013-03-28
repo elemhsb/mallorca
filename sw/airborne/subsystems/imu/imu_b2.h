@@ -252,7 +252,6 @@ static inline void ImuMagEvent(void (* _mag_handler)(void)) {
 #define ImuScaleMag(_imu) {}
 #endif
 
-<<<<<<< HEAD
 static inline void ImuEvent(void (* _gyro_handler)(void), void (* _accel_handler)(void), void (* _mag_handler)(void))
 {
   max1168_event();

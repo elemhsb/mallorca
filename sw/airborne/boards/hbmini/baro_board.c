@@ -60,8 +60,6 @@ void baro_board_calibrate(void) {
 #else // HBminiBMP
 
 /*
- * $Id: baro_bmp.c $
- *
  * Copyright (C) 2010 Martin Mueller
  *
  * This file is part of paparazzi.
@@ -91,6 +89,7 @@ void baro_board_calibrate(void) {
 
 
 #include "subsystems/sensors/baro.h"
+// #include "modules/sensors/baro_bmp.h"
 
 #include "mcu_periph/sys_time.h"
 #include "mcu_periph/i2c.h"
@@ -98,7 +97,7 @@ void baro_board_calibrate(void) {
 #include "mcu_periph/uart.h"
 #include "messages.h"
 #include "subsystems/datalink/downlink.h"
-#include "estimator.h"
+#include "state.h"
 #include "subsystems/nav.h"
 
 #ifdef SITL
@@ -126,8 +125,6 @@ void baro_board_calibrate(void) {
 #define BARO_BMP_R 0.5
 #define BARO_BMP_SIGMA2 0.1
 
-
-// extern void baro_periodic(void);
 struct i2c_transaction bmp_trans;
 
 bool_t baro_bmp_enabled;
@@ -136,11 +133,13 @@ float baro_bmp_sigma2;
 
 // Global variables
 uint8_t  baro_bmp_status;
+bool_t  baro_bmp_valid;
 uint32_t baro_bmp_pressure;
 uint16_t baro_bmp_temperature;
 int32_t baro_bmp_altitude, baro_bmp,baro_bmp_temp,baro_bmp_offset;
 double   tmp_float;
 
+// LOCAL BARO BLOCK START
 struct Baro baro;
 struct BaroBoard baro_board;
 
@@ -159,6 +158,7 @@ void baro_periodic(void) {
 	// run every 1/5 sec
 	RunOnceEvery(7,baro_bmp_event());
 }
+// LOCAL BARO BLOCK END
 
 int16_t  bmp_ac1, bmp_ac2, bmp_ac3;
 uint16_t bmp_ac4, bmp_ac5, bmp_ac6;
@@ -180,7 +180,7 @@ void baro_bmp_init( void ) {
   baro_bmp_cnt = BARO_BMP_OFFSET_NBSAMPLES_INIT + BARO_BMP_OFFSET_NBSAMPLES_AVRG;
   /* read calibration values */
   bmp_trans.buf[0] = BMP085_EEPROM_AC1;
-  I2CTransceive(BMP_I2C_DEV, bmp_trans, BMP085_SLAVE_ADDR, 1, 22);
+  i2c_transceive(&BMP_I2C_DEV, &bmp_trans, BMP085_SLAVE_ADDR, 1, 22);
 }
 
 void baro_bmp_periodic( void ) {
@@ -189,24 +189,26 @@ void baro_bmp_periodic( void ) {
     /* start temp measurement (once) */
     bmp_trans.buf[0] = BMP085_CTRL_REG;
     bmp_trans.buf[1] = BMP085_START_TEMP;
-    I2CTransmit(BMP_I2C_DEV, bmp_trans, BMP085_SLAVE_ADDR, 2);
+    i2c_transmit(&BMP_I2C_DEV, &bmp_trans, BMP085_SLAVE_ADDR, 2);
     baro_bmp_status = BARO_BMP_START_TEMP;
   }
   else if (baro_bmp_status == BARO_BMP_START_TEMP) {
     /* read temp measurement */
     bmp_trans.buf[0] = BMP085_DAT_MSB;
-    I2CTransceive(BMP_I2C_DEV, bmp_trans, BMP085_SLAVE_ADDR, 1, 2);
+    i2c_transceive(&BMP_I2C_DEV, &bmp_trans, BMP085_SLAVE_ADDR, 1, 2);
     baro_bmp_status = BARO_BMP_READ_TEMP;
   }
   else if (baro_bmp_status == BARO_BMP_START_PRESS) {
     /* read press measurement */
     bmp_trans.buf[0] = BMP085_DAT_MSB;
-    I2CTransceive(BMP_I2C_DEV, bmp_trans, BMP085_SLAVE_ADDR, 1, 3);
+    i2c_transceive(&BMP_I2C_DEV, &bmp_trans, BMP085_SLAVE_ADDR, 1, 3);
     baro_bmp_status = BARO_BMP_READ_PRESS;
   }
 #else // SITL
   baro_bmp_altitude = gps.hmsl / 1000.0;
-  EstimatorSetAlt(baro_bmp_altitude);
+  baro_bmp_pressure = baro_bmp_altitude; //FIXME do a proper scaling here
+  baro_bmp_valid = TRUE;
+  EstimatorSetAlt(baro_bmp_altitude); // old 
 #endif
 
 }
@@ -236,7 +238,7 @@ void baro_bmp_event( void ) {
       /* start high res pressure measurement */
       bmp_trans.buf[0] = BMP085_CTRL_REG;
       bmp_trans.buf[1] = BMP085_START_P3;
-      I2CTransmit(BMP_I2C_DEV, bmp_trans, BMP085_SLAVE_ADDR, 2);
+      i2c_transmit(&BMP_I2C_DEV, &bmp_trans, BMP085_SLAVE_ADDR, 2);
       baro_bmp_status = BARO_BMP_START_PRESS;
     }
     else if (baro_bmp_status == BARO_BMP_READ_PRESS) {
@@ -252,7 +254,7 @@ void baro_bmp_event( void ) {
       /* start temp measurement */
       bmp_trans.buf[0] = BMP085_CTRL_REG;
       bmp_trans.buf[1] = BMP085_START_TEMP;
-      I2CTransmit(BMP_I2C_DEV, bmp_trans, BMP085_SLAVE_ADDR, 2);
+      i2c_transmit(&BMP_I2C_DEV, &bmp_trans, BMP085_SLAVE_ADDR, 2);
       baro_bmp_status = BARO_BMP_START_TEMP;
 
       /* compensate temperature */
@@ -316,8 +318,7 @@ void baro_bmp_event( void ) {
 
       if (baro_bmp_offset_init) {
         baro_bmp_altitude = ground_alt + baro_bmp_temp;
-        // New value available war 22.0.2012
-//#define USE_BARO_BMP 1
+        // New value available
 
 #ifdef BMP_I2C_DEV
 #pragma message "USING BARO i2c1"

@@ -1,11 +1,20 @@
-#include "std.h"
+/*#include "std.h"
 #include "mcu_periph/sys_time.h"
 #include "led.h"
 #include "mcu.h"
 #include "subsystems/imu.h"
+olri */
 
 #include "mcu_periph/spi.h"
 #include "mcu_periph/spi_arch_new.h"
+
+#include "std.h"
+#include "LPC21xx.h"
+#include "interrupt_hw.h"
+#include "armVIC.h"
+#include BOARD_CONFIG
+
+xxx
 
 // Variables
 struct spi_transaction* slave0;
