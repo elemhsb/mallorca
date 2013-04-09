@@ -30,7 +30,6 @@
 
 #ifndef MPU6000_SLAVE_IDX
 #define MPU6000_SLAVE_IDX SPI_SLAVE2
-
 #endif
 
 #ifndef MPU6000_SPI_DEV
@@ -38,6 +37,7 @@
 #define MPU6000_SPI_DEV spi2
 #if CS_74138
 #define MPU6000_SPI_DEV spi1
+#warning TODO HB
 #endif
 
 #endif
@@ -212,11 +212,8 @@ static void mpu_configure(void)
            (3 << 3) );			// Full Scale = 16g
 
 #ifndef MPU6000_NO_SLAVES
-<<<<<<< HEAD
 PRINT_CONFIG_MSG("Reading MPU slaves")
 
-=======
->>>>>>> v4.0
   /////////////////////////////////////
   // SPI Slave Configuration Section
 
@@ -300,7 +297,6 @@ PRINT_CONFIG_MSG("Reading MPU slaves")
            (0 << 6) |		// Byte Swap
            (6 << 0) );		// Read 6 bytes
 
-<<<<<<< HEAD
 	// Slave 0 Control:
 
 #if defined IMU_ASPIRIN_VERSION_2_1 && USE_IMU_ASPIRIN2_BARO_SLAVE
@@ -352,5 +348,5 @@ PRINT_CONFIG_MSG("Reading the MS5611 as MPU slave")
   // Slave 0 Control:
 #else
   hmc5843_init();
-#endif
+#endif   // MPU6000_NO_SLAVES
 }

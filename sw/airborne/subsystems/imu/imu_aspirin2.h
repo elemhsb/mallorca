@@ -158,8 +158,8 @@ static inline int imu_from_buff(volatile uint8_t *buf)
   VECT3_ASSIGN(imu.accel_unscaled, x, y, z);
 #if !MPU6000_NO_SLAVES
   VECT3_ASSIGN(imu.mag_unscaled, Mz, -Mx, My);
-#endif
-#endif
+#endif // !MPU6000_NO_SLAVES
+#endif // LISA_M_LONGITUDINAL_X
 
   return 1;
 }
@@ -177,7 +177,7 @@ static inline void imu_aspirin2_event(void (* _gyro_handler)(void), void (* _acc
       _mag_handler();
 #if !MPU6000_NO_SLAVES
       _mag_handler();   //WARM
-#endif
+#endif // !MPU6000_NO_SLAVES
     }
   }
 }

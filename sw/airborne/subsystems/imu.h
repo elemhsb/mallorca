@@ -113,8 +113,8 @@ extern void imu_init(void);
     _imu.gyro.q = ((_imu.gyro_unscaled.q - _imu.gyro_neutral.q)*IMU_GYRO_Q_SIGN*IMU_GYRO_Q_SENS_NUM)/IMU_GYRO_Q_SENS_DEN; \
     _imu.gyro.r = ((_imu.gyro_unscaled.r - _imu.gyro_neutral.r)*IMU_GYRO_R_SIGN*IMU_GYRO_R_SENS_NUM)/IMU_GYRO_R_SENS_DEN; \
   }
-#endif
-#endif
+#endif // TREF
+#endif // ImuScaleGyro
 
 
 #ifndef ImuScaleAccel
@@ -132,8 +132,8 @@ extern void imu_init(void);
     _imu.accel.y = ((_imu.accel_unscaled.y - _imu.accel_neutral.y)*IMU_ACCEL_Y_SIGN*IMU_ACCEL_Y_SENS_NUM)/IMU_ACCEL_Y_SENS_DEN; \
     _imu.accel.z = ((_imu.accel_unscaled.z - _imu.accel_neutral.z)*IMU_ACCEL_Z_SIGN*IMU_ACCEL_Z_SENS_NUM)/IMU_ACCEL_Z_SENS_DEN; \
   }
-#endif
-#endif
+#endif // TREF
+#endif // ImuScaleAccel
 
 #ifndef ImuScaleMag
 #if defined IMU_MAG_45_HACK
