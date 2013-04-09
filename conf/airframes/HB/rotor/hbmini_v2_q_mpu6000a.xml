@@ -294,8 +294,6 @@
        <define name="DYG" value="-0.1592"/>
        <define name="DZG" value="-0.0"/>
        <define name="TREF" value="19420"/>
-      <define name="USE_MOTOR_MIXING" value="0"/>
-
 
        <define name="BAT_CHECKER_DELAY" value="2"/>
       <define name="MPU6000_NO_SLAVES" value="1"/>

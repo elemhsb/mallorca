@@ -62,7 +62,7 @@ enum cssel_idx_t { CS_MAX1168, CS_BMP085, CS_RES_0, CS_RES_1, CS_RES_2,
 #endif // CS_74138
 
 #define Max1168OnSpiInt() {						\
-    ASSERT((max1168_status == STA_MAX1168_READING_RES),		\
+    ASSERT((max1168_status == MAX1168_READING_RES),		\
        DEBUG_MAX_1168, MAX1168_ERR_ISR_STATUS);			\
     /* store convertion result */					\
     max1168_values[0] = SSPDR;					\
@@ -77,7 +77,7 @@ enum cssel_idx_t { CS_MAX1168, CS_BMP085, CS_RES_0, CS_RES_1, CS_RES_2,
     SSP_DisableRti();							\
     SSP_Disable();							\
     Max1168Unselect();							\
-    max1168_status = STA_MAX1168_DATA_AVAILABLE;			\
+    max1168_status = MAX1168_DATA_AVAILABLE;			\
   }
 
 #endif /* MAX1168_ARCH_H */

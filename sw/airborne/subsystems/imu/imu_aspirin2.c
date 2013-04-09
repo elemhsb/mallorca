@@ -30,10 +30,16 @@
 
 #ifndef MPU6000_SLAVE_IDX
 #define MPU6000_SLAVE_IDX SPI_SLAVE2
+
 #endif
 
 #ifndef MPU6000_SPI_DEV
+
 #define MPU6000_SPI_DEV spi2
+#if CS_74138
+#define MPU6000_SPI_DEV spi1
+#endif
+
 #endif
 
 /* HMC58XX default conf */
@@ -343,10 +349,8 @@ PRINT_CONFIG_MSG("Reading the MS5611 as MPU slave")
 
 #endif // read MS5611 as MPU slave
 
-=======
   // Slave 0 Control:
 #else
   hmc5843_init();
->>>>>>> v4.0
 #endif
 }
