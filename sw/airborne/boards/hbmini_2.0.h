@@ -204,6 +204,9 @@
 // p1.24
 
 // SPI PINS and PORTS
+/** */
+#define USE_SPI1 1
+#define SPI_MASTER 1
 /** Todo: right for hbmini ? olri */
 #define SERVO_RESET_PIN 24
 #define SPI_SELECT_SLAVE0_PORT 0

@@ -45,7 +45,9 @@
 #if defined IMU_B2_MAG_TYPE && IMU_B2_MAG_TYPE == IMU_B2_MAG_HMC58XX
 #include "peripherals/hmc58xx.h"
 #endif
+
 #ifdef IMU_HBMINI_I_VERSION_1_0
+
 #if !defined IMU_GYRO_P_CHAN & !defined IMU_GYRO_Q_CHAN & !defined IMU_GYRO_R_CHAN
 #define IMU_GYRO_P_CHAN  3
 #define IMU_GYRO_Q_CHAN  4
@@ -78,6 +80,7 @@
 #define IMU_MAG_Y_SIGN   -1
 #define IMU_MAG_Z_SIGN   -1
 #endif
+
 #endif /* IMU_HBMINI_I_VERSION_1_0 */
 
 #ifdef IMU_B2_VERSION_1_0

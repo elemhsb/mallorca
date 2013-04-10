@@ -53,11 +53,24 @@
 #define SPI_SELECT_SLAVE1_IOCLR SPI_SELECT_SLAVE_IO_(SPI_SELECT_SLAVE1_PORT, CLR)
 #define SPI_SELECT_SLAVE1_IOSET SPI_SELECT_SLAVE_IO_(SPI_SELECT_SLAVE1_PORT, SET)
 
+#ifdef CS_74138
+enum cssel_idx_t { CS_MAX1168, CS_BMP085, CS_RES_0, CS_RES_1, CS_RES_2,
+                   CS_ACC, CS_Y6, CS_UNSEL, CS_LAST};
+#define CSSEL(x) {                              \
+    IO1SET = 7<<21;                             \
+    IO1CLR = ((~x&7)<<21);                      \
+  }
+#endif // CS_74138
+
 __attribute__ ((always_inline)) static inline void SpiSlaveSelect(uint8_t slave) {
   switch (slave) {
 #if USE_SPI_SLAVE0
     case SPI_SLAVE0:
+#if ! defined CS_74138
       SetBit(SPI_SELECT_SLAVE0_IOCLR, SPI_SELECT_SLAVE0_PIN);
+#else
+      CSSEL(CS_MAX1168)
+#endif
       break;
 #endif
 #if USE_SPI_SLAVE1
@@ -74,7 +87,11 @@ __attribute__ ((always_inline)) static inline void SpiSlaveUnselect(uint8_t slav
   switch (slave) {
 #if USE_SPI_SLAVE0
     case SPI_SLAVE0:
+#if ! defined CS_74138
       SetBit(SPI_SELECT_SLAVE0_IOSET, SPI_SELECT_SLAVE0_PIN);
+#else
+      CSSEL(CS_UNSEL)
+#endif
       break;
 #endif
 #if USE_SPI_SLAVE1
