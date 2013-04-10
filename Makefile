@@ -115,12 +115,7 @@ conf: conf/conf.xml conf/control_panel.xml conf/maps.xml
 conf/%.xml :conf/%.xml.example
 	[ -L $@ ] || [ -f $@ ] || cp $< $@
 
-<<<<<<< HEAD
-ground_segment: print_build_version update_google_version conf lib subdirs commands static
-=======
-
 ground_segment: print_build_version update_google_version conf libpprz subdirs commands static
->>>>>>> upstream/master
 
 static: cockpit tmtc tools sim_static joystick static_h
 
