@@ -368,13 +368,13 @@ struct State {
 
   /**
    * Angular rates in body frame.
-   * Units: rad/s in BFP with #INT32_RATE_FRAC
+   * Units: rad/s^2 in BFP with #INT32_RATE_FRAC
    */
   struct Int32Rates  body_rates_i;
 
   /**
    * Angular rates in body frame.
-   * Units: rad/s
+   * Units: rad/s^2
    */
   struct FloatRates  body_rates_f;
   /** @}*/

@@ -30,6 +30,7 @@ SRC_BOOZ_PRIV=booz_priv
 SRC_BOARD=boards/$(BOARD)
 SRC_FIRMWARE=firmwares/rotorcraft
 SRC_SUBSYSTEMS=subsystems
+SRC_MODULES=modules
 
 SRC_ARCH=arch/$(ARCH)
 
@@ -140,6 +141,8 @@ ap.srcs += subsystems/actuators.c
 #
 # booz baro
 ifeq ($(BOARD), booz)
+ap.srcs += $(SRC_BOARD)/baro_board.c
+else ifeq ($(BOARD), hbmini)
 ap.srcs += $(SRC_BOARD)/baro_board.c
 else ifeq ($(BOARD), lisa_l)
 ap.CFLAGS += -DUSE_I2C2

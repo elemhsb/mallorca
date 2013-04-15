@@ -162,7 +162,7 @@
 #  else
 #    include "subsystems/imu.h"
 #    define PERIODIC_SEND_IMU_ACCEL_RAW(_trans, _dev) { DOWNLINK_SEND_IMU_ACCEL_RAW(_trans, _dev, &imu.accel_unscaled.x, &imu.accel_unscaled.y, &imu.accel_unscaled.z)}
-#    define PERIODIC_SEND_IMU_GYRO_RAW(_trans, _dev) { DOWNLINK_SEND_IMU_GYRO_RAW(_trans, _dev, &imu.gyro_unscaled.p, &imu.gyro_unscaled.q, &imu.gyro_unscaled.r)}
+#    define PERIODIC_SEND_IMU_GYRO_RAW(_trans, _dev) { DOWNLINK_SEND_IMU_GYRO_RAW(_trans, _dev, &imu.gyro_unscaled.p, &imu.gyro_unscaled.q, &imu.gyro_unscaled.r, &imu.temp)}
 #    define PERIODIC_SEND_IMU_MAG_RAW(_trans, _dev) { DOWNLINK_SEND_IMU_MAG_RAW(_trans, _dev, &imu.mag_unscaled.x, &imu.mag_unscaled.y, &imu.mag_unscaled.z)}
 #    define PERIODIC_SEND_IMU_ACCEL(_trans, _dev) { struct FloatVect3 accel_float; ACCELS_FLOAT_OF_BFP(accel_float, imu.accel); DOWNLINK_SEND_IMU_ACCEL(_trans, _dev, &accel_float.x, &accel_float.y, &accel_float.z)}
 #    define PERIODIC_SEND_IMU_GYRO(_trans, _dev) { struct FloatRates gyro_float; RATES_FLOAT_OF_BFP(gyro_float, imu.gyro); DOWNLINK_SEND_IMU_GYRO(_trans, _dev, &gyro_float.p, &gyro_float.q, &gyro_float.r)}

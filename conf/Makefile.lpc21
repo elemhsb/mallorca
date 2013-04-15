@@ -72,6 +72,10 @@ ASRCARM = crt0.S
 OPT = s
 #OPT=3
 
+# Debug Level
+#DEBUG=
+DEBUG=3
+
 CSTANDARD = -std=gnu99
 
 CINCS = $(INCLUDES) -I$(SRC_ARCH)/include
@@ -79,6 +83,9 @@ CINCS = $(INCLUDES) -I$(SRC_ARCH)/include
 # Compiler flags.
 CFLAGS = $(CINCS)
 CFLAGS += -O$(OPT)
+ifdef DEBUG
+CFLAGS += -g$(DEBUG)
+endif
 # CFLAGS += -malignment-traps
 CFLAGS += -Wa,-adhlns=$(OBJDIR)/$(notdir $(subst $(suffix $<),.lst,$<))
 CFLAGS += $(patsubst %,-I%,$(EXTRAINCDIRS))
@@ -97,7 +104,11 @@ CFLAGS += $(CSTANDARD)
 CFLAGS += $($(TARGET).CFLAGS) $(LOCAL_CFLAGS)
 
 # Assembler flags.
+ifdef DEBUG
+ASFLAGS += -Wa,-adhlns=$(OBJDIR)/$(notdir $(<:.S=.lst)),-g
+else
 ASFLAGS = -Wa,-adhlns=$(OBJDIR)/$(notdir $(<:.S=.lst))
+endif
 
 #Additional libraries.
 MATH_LIB = -lm
