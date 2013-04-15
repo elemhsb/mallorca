@@ -4,20 +4,19 @@
 <airframe name="HBMINI_V2">
  <!-- HBmini17_V2  with 1168  IDG500 ISZ505
     Heinrich Warmers  11/2012
-    quadrocopter with mirkokopter motor controller over i2c
+    quadrocopter with microkopter motor controller over i2c
 -->
-<modules main_freq="512">
+  <modules main_freq="512">
     <!--load name="booz_pwm.xml">
       <define name="USE_PWM1"/>
     </load-->
     <!--load name="booz_drop.xml"/>
     <load name="booz_cam.xml"/-->
     <load name="mag_hmc5843_i2c1.xml"/>
-<!--  <load name="baro_bmp.xml"/>   --> 
-    <load name="bat_checker.xml"/> 
-    <load name="gps_ubx_ucenter.xml"/>    
+    <!--  <load name="baro_bmp.xml"/> -->
+    <load name="bat_checker.xml"/>
+    <load name="gps_ubx_ucenter.xml"/>
   </modules>
-
 
   <servos>
     <servo name="FRONT" no="0" min="0" neutral="0" max="255"/>
@@ -41,7 +40,7 @@
     <define name="NB" value="4"/>
     <define name="ADDR" value="{ 0x52, 0x54, 0x56, 0x58 }"/>
   </section>
-  
+
 <!-- old olri
   <section name="SUPERVISION" prefix="SUPERVISION_">
     <define name="MIN_MOTOR" value="2"/>
@@ -57,7 +56,7 @@
     <define name="THRUST_COEF" value="{ 256,  256,  256,  256}"/>
   </section>
  olri -->
- 
+
   <section name="MIXING" prefix="MOTOR_MIXING_">
     <define name="TRIM_ROLL" value="0"/>
     <define name="TRIM_PITCH" value="0"/>
@@ -77,7 +76,7 @@
     <set servo="RIGHT"  value="motor_mixing.commands[SERVO_RIGHT]"/>
     <set servo="LEFT"   value="motor_mixing.commands[SERVO_LEFT]"/>
   </command_laws>
-  
+
   <section name="IMU" prefix="IMU_">
  <!--    Nr.1
     <define name="GYRO_P_NEUTRAL" value="20800"/>
@@ -130,7 +129,7 @@
     <define name="GYRO_R_NEUTRAL" value="24300"/>
     <define name="GYRO_P_SENS" value=" 1.24" integer="16"/>
     <define name="GYRO_Q_SENS" value=" 1.24" integer="16"/>
-    <define name="GYRO_R_SENS" value=" 0.91" integer="16"/> 
+    <define name="GYRO_R_SENS" value=" 0.91" integer="16"/>
 -->
 
 <!--	Nr.3
@@ -148,13 +147,13 @@
     <define name="MAG_X_SENS" value="3.88984680104" integer="16"/>
     <define name="MAG_Y_SENS" value="3.46530554418" integer="16"/>
     <define name="MAG_Z_SENS" value="4.13251329042" integer="16"/>
-               
+
     <define name="GYRO_P_NEUTRAL" value="23580"/>
     <define name="GYRO_Q_NEUTRAL" value="21500"/>
     <define name="GYRO_R_NEUTRAL" value="21921"/>
     <define name="GYRO_P_SENS" value=" 2.217" integer="16"/>
     <define name="GYRO_Q_SENS" value=" 2.217" integer="16"/>
-    <define name="GYRO_R_SENS" value=" 2.217" integer="16"/> 
+    <define name="GYRO_R_SENS" value=" 2.217" integer="16"/>
 -->
 
 <!--    Nr.4
@@ -181,7 +180,7 @@
     <define name="GYRO_R_SENS" value=" 2.217" integer="16"/>
 -->
 
-<!--     Nr. 5 
+<!--     Nr. 5
  <define name="ACCEL_X_NEUTRAL" value="26430"/>
     <define name="ACCEL_Y_NEUTRAL" value="26282"/>
     <define name="ACCEL_Z_NEUTRAL" value="26815"/>
@@ -195,13 +194,13 @@
     <define name="MAG_X_SENS" value="3.88984680104" integer="16"/>
     <define name="MAG_Y_SENS" value="3.46530554418" integer="16"/>
     <define name="MAG_Z_SENS" value="4.13251329042" integer="16"/>
-               
+
     <define name="GYRO_P_NEUTRAL" value="21296"/>
     <define name="GYRO_Q_NEUTRAL" value="21656"/>
     <define name="GYRO_R_NEUTRAL" value="22257"/>
     <define name="GYRO_P_SENS" value=" 2.217" integer="16"/>
     <define name="GYRO_Q_SENS" value=" 2.217" integer="16"/>
-    <define name="GYRO_R_SENS" value=" 2.217" integer="16"/> 
+    <define name="GYRO_R_SENS" value=" 2.217" integer="16"/>
 -->
 
 <!-- Nr. 6
@@ -218,22 +217,22 @@
     <define name="MAG_X_SENS" value="3.88984680104" integer="16"/>
     <define name="MAG_Y_SENS" value="3.46530554418" integer="16"/>
     <define name="MAG_Z_SENS" value="4.13251329042" integer="16"/>
-               
+
     <define name="GYRO_P_NEUTRAL" value="22801"/>
     <define name="GYRO_Q_NEUTRAL" value="19745"/>
     <define name="GYRO_R_NEUTRAL" value="21727"/>
     <define name="GYRO_P_SENS" value=" 2.217" integer="16"/>
     <define name="GYRO_Q_SENS" value=" 2.217" integer="16"/>
-    <define name="GYRO_R_SENS" value=" 2.217" integer="16"/> 
+    <define name="GYRO_R_SENS" value=" 2.217" integer="16"/>
 
    <define name="BODY_TO_IMU_PHI" value="0." unit="deg"/>
    <define name="BODY_TO_IMU_THETA" value="0." unit="deg"/>
    <define name="BODY_TO_IMU_PSI" value="0." unit="deg"/>
 -->
 
-<!--  Nr. 7 
+<!--  Nr. 7
 
-  
+
     <define name="ACCEL_X_NEUTRAL" value="26033"/>
     <define name="ACCEL_Y_NEUTRAL" value="26220"/>
     <define name="ACCEL_Z_NEUTRAL" value="26080"/>
@@ -247,13 +246,13 @@
     <define name="MAG_X_SENS" value="3.88984680104" integer="16"/>
     <define name="MAG_Y_SENS" value="3.46530554418" integer="16"/>
     <define name="MAG_Z_SENS" value="4.13251329042" integer="16"/>
-               
+
     <define name="GYRO_P_NEUTRAL" value="22103"/>
     <define name="GYRO_Q_NEUTRAL" value="19750"/>
     <define name="GYRO_R_NEUTRAL" value="21510"/>
     <define name="GYRO_P_SENS" value=" 2.217" integer="16"/>
     <define name="GYRO_Q_SENS" value=" 2.217" integer="16"/>
-    <define name="GYRO_R_SENS" value=" 2.217" integer="16"/> 
+    <define name="GYRO_R_SENS" value=" 2.217" integer="16"/>
 -->
 
 
@@ -272,13 +271,13 @@
     <define name="MAG_X_SENS" value="3.88984680104" integer="16"/>
     <define name="MAG_Y_SENS" value="3.46530554418" integer="16"/>
     <define name="MAG_Z_SENS" value="4.13251329042" integer="16"/>
-               
+
     <define name="GYRO_P_NEUTRAL" value="21215"/>
     <define name="GYRO_Q_NEUTRAL" value="19950"/>
     <define name="GYRO_R_NEUTRAL" value="21397"/>
     <define name="GYRO_P_SENS" value=" 2.217" integer="16"/>
     <define name="GYRO_Q_SENS" value=" 2.217" integer="16"/>
-    <define name="GYRO_R_SENS" value=" 2.217" integer="16"/> 
+    <define name="GYRO_R_SENS" value=" 2.217" integer="16"/>
 --->
 
    <define name="BODY_TO_IMU_PHI" value="0." unit="deg"/>
@@ -418,7 +417,7 @@
        <define name="HBminiBMP" value="1"/>
        <define name="DXA" value="-0.0785"/>
        <define name="DYA" value="-0.0338"/>
-       <define name="DZA" value="-0.171"/> 
+       <define name="DZA" value="-0.171"/>
        <define name="DXG" value="0.1301"/>
        <define name="DYG" value="-0.1592"/>
        <define name="DZG" value="-0.0"/>

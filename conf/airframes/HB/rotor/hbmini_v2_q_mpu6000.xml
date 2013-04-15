@@ -2,22 +2,20 @@
 
 <airframe name="HBMINI_V2_Q_MPU6000">
  <!-- HBmini17_V2  with MPU6000 spi interface 200us without interrupt
-      quadrocopter with mirkokopter motor controller over i2c
+      quadrocopter with microkopter motor controller over i2c
       Heinrich Warmers 11/2012
 
 -->
-<modules main_freq="512">
+  <modules main_freq="512">
     <!--load name="booz_pwm.xml">
       <define name="USE_PWM1"/>
     </load-->
     <!--load name="booz_drop.xml"/>
     <load name="booz_cam.xml"/-->
     <load name="mag_hmc5843_i2c1.xml"/>
-   <!--    <load name="baro_bmp.xml"/> -->
+   <!--  <load name="baro_bmp.xml"/> -->
    <!--   <load name="bat_checker.xml"/>  -->
-
-  <load name="gps_ubx_ucenter.xml"/>  
-
+    <load name="gps_ubx_ucenter.xml"/>
   </modules>
 
 <!-- old olri
@@ -27,7 +25,7 @@
     <servo name="RIGHT" no="2" min="0" neutral="0" max="255"/>
     <servo name="LEFT" no="3" min="0" neutral="0" max="255"/>
   </servos>
- olri -->
+olri -->
 
   <commands>
     <axis name="PITCH" failsafe_value="0"/>
@@ -41,19 +39,18 @@
     <define name="ADDR" value="{ 0x52, 0x54, 0x56, 0x58 }"/>
   </section>
 
-<servos driver="Mkk">
+  <servos driver="Mkk">
     <servo name="FRONT" no="0" min="0" neutral="2" max="210"/>
     <servo name="BACK"  no="1" min="0" neutral="2" max="210"/>
     <servo name="RIGHT" no="2" min="0" neutral="2" max="210"/>
     <servo name="LEFT"  no="3" min="0" neutral="2" max="210"/>
   </servos>
 
-
-
- <section name="ACTUATORS" prefix="ACTUATORS_">
+<section name="ACTUATORS" prefix="ACTUATORS_">
     <define name="NB" value="4"/>
     <define name="ADDR" value="{ 0x52, 0x54, 0x56, 0x58 }"/>
   </section>
+
 <!-- old olri
   <section name="SUPERVISION" prefix="SUPERVISION_">
     <define name="MIN_MOTOR" value="2"/>
@@ -286,15 +283,16 @@
        <define name="BAT_CHECKER_LED" value="3"/>
        <define name="INVERT_BAT_LED" value="1"/>
        <define name="USE_LED_6" value="1"/>
+       <define name="BAT_CHECKER_DELAY" value="2"/>
        <define name="HBminiBMP" value="1"/>
        <define name="DXA" value="-0.0785"/>
        <define name="DYA" value="-0.0338"/>
-       <define name="DZA" value="-0.171"/> 
+       <define name="DZA" value="-0.171"/>
        <define name="DXG" value="0.1301"/>
        <define name="DYG" value="-0.1592"/>
        <define name="DZG" value="-0.0"/>
        <define name="TREF" value="19420"/>
-      <define name="USE_MOTOR_MIXING" value="0"/>
+      <define name="USE_MOTOR_MIXING" value="1"/>
 
 
        <define name="BAT_CHECKER_DELAY" value="2"/>
@@ -308,6 +306,7 @@
     <subsystem name="radio_control" type="ppm"/>
     <subsystem name="telemetry" type="transparent"/>
     <configure name="MODEM_BAUD" value="B38400"/>
+    <subsystem name="motor_mixing"/>
     <subsystem name="actuators" type="mkk"/>
     <subsystem name="imu" type="aspirin_v2.1"/>
     <subsystem name="gps" type="ublox"/>
