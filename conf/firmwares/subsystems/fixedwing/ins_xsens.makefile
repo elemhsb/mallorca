@@ -43,6 +43,14 @@ ap.CFLAGS += -DUSE_GPS -DGPS_USE_LATLONG
 ap.CFLAGS += -DGPS_TYPE_H=\"modules/ins/ins_xsens.h\"
 ap.srcs += $(SRC_SUBSYSTEMS)/gps.c
 
+ifeq ($(TARGET), fbw)
+
+# when compiling FBW only, the settings need to know the AHRS_TYPE
+
+fbw.CFLAGS += -DAHRS_TYPE_H=\"modules/ins/ins_xsens.h\"
+
+endif
+
 
 #########################################
 ## Simulator

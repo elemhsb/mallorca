@@ -140,6 +140,7 @@ ap.srcs += subsystems/actuators.c
 # BARO
 #
 # booz baro
+ap.srcs += $(SRC_BOARD)/baro_board.c
 ifeq ($(BOARD), booz)
 ap.srcs += $(SRC_BOARD)/baro_board.c
 else ifeq ($(BOARD), hbmini)

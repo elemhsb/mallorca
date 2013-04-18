@@ -14,7 +14,6 @@
 
 // For centripedal corrections
 #include "subsystems/gps.h"
-#include "subsystems/ahrs.h"
 
 #include "generated/airframe.h"
 
@@ -27,7 +26,7 @@
 #include "subsystems/datalink/downlink.h"
 #endif
 
-#include "ins_module.h"
+#include "ins_chimu_spi.h"
 #include "imu_chimu.h"
 
 #include "led.h"

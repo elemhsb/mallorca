@@ -133,6 +133,7 @@ int main(int argc, char *argv[])
     bool running = true;
     int ret = 0;
     GMainLoop *ml =  g_main_loop_new(NULL, FALSE);
+    
 
 
     gpsdata = malloc(sizeof(struct gps_data_t));
