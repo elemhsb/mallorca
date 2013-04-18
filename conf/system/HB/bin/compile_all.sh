@@ -25,6 +25,7 @@ cd $PAPARAZZI_HOME
 for AIRCRAFT in \
    HBMINI_V1 \
    HBMINI_V2 \
+   HBMINI_V2_Q_MPU6000 \
    HBMINI_V2_FUNJET \
    HBMINI_V3 \
    HB_f \
@@ -35,5 +36,5 @@ for AIRCRAFT in \
 do
 	echo $AIRCRAFT
 	make AIRCRAFT=$AIRCRAFT clean_ac ap 2>&1 | egrep 'ap.elf  :|error|warning|\\\*\\\*\\\*'
-	echo; echo
+	echo "--------------------------------------------------------------------------"; echo
 done

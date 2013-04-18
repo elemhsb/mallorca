@@ -8,8 +8,8 @@ monitor reset 	halt
 
 # set debug remote 0
 
-symbol-file	var/HBMINI_V2/ap/ap.elf
+symbol-file	var/current/ap/ap.elf
 tbreak		main
-load 		var/HBMINI_V2/ap/ap.elf
+load 		var/current/ap/ap.elf
 
 cont

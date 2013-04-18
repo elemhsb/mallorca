@@ -56,9 +56,9 @@
 #ifdef CS_74138
 enum cssel_idx_t { CS_MAX1168, CS_BMP085, CS_RES_0, CS_RES_1, CS_RES_2,
                    CS_ACC, CS_Y6, CS_UNSEL, CS_LAST};
-#define CSSEL(x) {                              \
-    IO1SET = 7<<21;                             \
-    IO1CLR = ((~x&7)<<21);                      \
+#define CSSEL(x) {                  \
+    IO1SET = 7<<21;                 \
+    IO1CLR = ((~x&7)<<21);          \
   }
 #endif // CS_74138
 
@@ -69,13 +69,22 @@ __attribute__ ((always_inline)) static inline void SpiSlaveSelect(uint8_t slave)
 #if ! defined CS_74138
       SetBit(SPI_SELECT_SLAVE0_IOCLR, SPI_SELECT_SLAVE0_PIN);
 #else
-      CSSEL(CS_MAX1168)
+      CSSEL(CS_MAX1168);
 #endif
       break;
 #endif
 #if USE_SPI_SLAVE1
     case SPI_SLAVE1:
       SetBit(SPI_SELECT_SLAVE1_IOCLR, SPI_SELECT_SLAVE1_PIN);
+      break;
+#endif
+#if USE_SPI_SLAVE5
+    case SPI_SLAVE5:
+#if ! defined CS_74138
+      SetBit(SPI_SELECT_SLAVE5_IOCLR, SPI_SELECT_SLAVE5_PIN);
+#else
+      CSSEL(CS_ACC);
+#endif
       break;
 #endif
     default:
@@ -90,13 +99,22 @@ __attribute__ ((always_inline)) static inline void SpiSlaveUnselect(uint8_t slav
 #if ! defined CS_74138
       SetBit(SPI_SELECT_SLAVE0_IOSET, SPI_SELECT_SLAVE0_PIN);
 #else
-      CSSEL(CS_UNSEL)
+      CSSEL(CS_UNSEL);
 #endif
       break;
 #endif
 #if USE_SPI_SLAVE1
     case SPI_SLAVE1:
       SetBit(SPI_SELECT_SLAVE1_IOSET, SPI_SELECT_SLAVE1_PIN);
+      break;
+#endif
+#if USE_SPI_SLAVE5
+    case SPI_SLAVE5:
+#if ! defined CS_74138
+      SetBit(SPI_SELECT_SLAVE5_IOCLR, SPI_SELECT_SLAVE5_PIN);
+#else
+      CSSEL(CS_UNSEL);
+#endif
       break;
 #endif
     default:
@@ -467,6 +485,13 @@ void spi1_arch_init(void) {
   /* setup pins for SSP (SCK, MISO, MOSI) */
   PINSEL1 |= SSP_PINSEL1_SCK | SSP_PINSEL1_MISO | SSP_PINSEL1_MOSI;
 
+  /* setup pins for external spi /cs expander */
+#if CS_74138
+  /* P1.25-16 are used as GPIO */
+  PINSEL2 &= ~(_BV(3));
+  CSSEL(CS_UNSEL);
+#endif // CS_74138
+
   /* setup SSP */
   SSPCR0 = MASTER_SSP_DSS | MASTER_SSP_FRF | MASTER_SSP_CPOL | MASTER_SSP_CPHA | MASTER_SSP_SCR;
   SSPCR1 = MASTER_SSP_LBM | MASTER_SSP_MS | MASTER_SSP_SOD;
@@ -538,6 +563,10 @@ void spi_init_slaves(void) {
 
 #if USE_SPI_SLAVE2
 #error SPI_SLAVE2 is not implemented yet, sorry
+#endif
+
+#if USE_SPI_SLAVE5
+  SpiSlaveUnselect(SPI_SLAVE5);
 #endif
 }
 

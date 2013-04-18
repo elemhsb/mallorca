@@ -73,7 +73,6 @@ OPT = s
 #OPT=3
 
 # Debug Level
-#DEBUG=
 DEBUG=3
 
 CSTANDARD = -std=gnu99
@@ -105,7 +104,7 @@ CFLAGS += $($(TARGET).CFLAGS) $(LOCAL_CFLAGS)
 
 # Assembler flags.
 ifdef DEBUG
-ASFLAGS += -Wa,-adhlns=$(OBJDIR)/$(notdir $(<:.S=.lst)),-g
+ASFLAGS = -Wa,-adhlns=$(OBJDIR)/$(notdir $(<:.S=.lst)),-g
 else
 ASFLAGS = -Wa,-adhlns=$(OBJDIR)/$(notdir $(<:.S=.lst))
 endif

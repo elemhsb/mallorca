@@ -297,6 +297,10 @@ olri -->
 
        <define name="BAT_CHECKER_DELAY" value="2"/>
       <define name="MPU6000_NO_SLAVES" value="1"/>
+
+      <define name="MPU6000_SPI_DEV" value="spi1"/>
+      <define name="MPU6000_SLAVE_IDX" value="5"/>
+      <define name="USE_SPI_SLAVE5" value="1"/>
 <!--
      <define name="USE_BARO_BMP" value="1"/>  -->
     </target>

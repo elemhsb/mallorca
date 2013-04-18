@@ -4,4 +4,4 @@ PATH=/opt/local/bin:$PATH:.
 
 $(dirname $0)/openocd.sh
 
-exec eclipse -nosplash -data ../workspace-elemhsb-paparazzi-v4.0 "$@" &
+exec eclipse -nosplash -data ../workspace-elemhsb-paparazzi-orange "$@" &

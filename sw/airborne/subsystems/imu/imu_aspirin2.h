@@ -127,7 +127,7 @@ extern struct ImuAspirin2 imu_aspirin2;
 
 static inline int imu_from_buff(volatile uint8_t *buf)
 {
-  int32_t x, y, z, p, q, r, Mx, My, Mz;
+  int32_t x, y, z, p, q, r;
 
 #define MPU_OFFSET_STATUS 1
   if (!(buf[MPU_OFFSET_STATUS] & 0x01)) {
@@ -144,10 +144,13 @@ static inline int imu_from_buff(volatile uint8_t *buf)
   y = (int16_t) ((buf[2+MPU_OFFSET_ACC] << 8) | buf[3+MPU_OFFSET_ACC]);
   z = (int16_t) ((buf[4+MPU_OFFSET_ACC] << 8) | buf[5+MPU_OFFSET_ACC]);
 
+#if !MPU6000_NO_SLAVES || LISA_M_LONGITUDINAL_X
 #define MPU_OFFSET_MAG 16
+  int32_t Mx, My, Mz;
   Mx = (int16_t) ((buf[0+MPU_OFFSET_MAG] << 8) | buf[1+MPU_OFFSET_MAG]);
   My = (int16_t) ((buf[2+MPU_OFFSET_MAG] << 8) | buf[3+MPU_OFFSET_MAG]);
   Mz = (int16_t) ((buf[4+MPU_OFFSET_MAG] << 8) | buf[5+MPU_OFFSET_MAG]);
+#endif // !MPU6000_NO_SLAVES || LISA_M_LONGITUDINAL_X
 
 #ifdef LISA_M_LONGITUDINAL_X
   RATES_ASSIGN(imu.gyro_unscaled, q, -p, r);
