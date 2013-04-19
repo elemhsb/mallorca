@@ -886,6 +886,40 @@
 #define PERIODIC_SEND_I2C_ERRORS(_trans, _dev) {}
 #endif
 
+#ifdef USE_UART0
+#define PERIODIC_SEND_UART0_ERRORS(_trans, _dev) { \
+		/**FIXME UART0 */ \
+}
+#else
+#define PERIODIC_SEND_UART0_ERRORS(_trans, _dev) {}
+#endif
+
+#ifdef USE_UART1
+#define PERIODIC_SEND_UART1_ERRORS(_trans, _dev) { \
+		/** FIXME UART1 */ \
+}
+#else
+#define PERIODIC_SEND_UART1_ERRORS(_trans, _dev) {}
+#endif
+
+#ifdef USE_UART2
+#define PERIODIC_SEND_UART2_ERRORS(_trans, _dev) { \
+		/** FIXME UART2 */ \
+}
+#else
+#define PERIODIC_SEND_UART2_ERRORS(_trans, _dev) {}
+#endif
+
+#ifndef SITL
+#define PERIODIC_SEND_UART_ERRORS(_trans, _dev) { \
+    PERIODIC_SEND_UART0_ERRORS(_trans, _dev);     \
+    PERIODIC_SEND_UART1_ERRORS(_trans, _dev);     \
+    PERIODIC_SEND_UART2_ERRORS(_trans, _dev);     \
+}
+#else
+#define PERIODIC_SEND_UART_ERRORS(_trans, _dev) {}
+#endif
+
 #ifdef BOOZ2_TRACK_CAM
 #include "cam_track.h"
 #define PERIODIC_SEND_CAM_TRACK(_trans, _dev) DOWNLINK_SEND_NPS_SPEED_POS(_trans, _dev, \
