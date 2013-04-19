@@ -1,9 +1,12 @@
 #!/bin/sh
 
-for i in BOOZ2 Quad_NavGo Hexa_LisaL Quad_LisaM_2 Bixler MentorEnergy Microjet Twog_IMU Umarim_Lite Twinjet EasyStar_ETS setup_lisam2 Twinstar_energyadaptive
+LANG=C
+
+for i in $( grep name conf/conf.xml | sed 's/.*="//; s/"//' )
 do
+	echo "----------------------------------------------------------------------------"
 	AIRCRAFT=$i
-	bin/compile.sh
-	echo "------------------------------------------------------"
-	read a
+	echo $AIRCRAFT ...
+	bin/compile.sh 2>&1 | egrep -i 'ap.elf  :|error|warning|\*'
+	echo "----------------------------------------------------------------------------"; echo
 done
