@@ -38,7 +38,7 @@ extern void imu_periodic(void);
 /** abstract IMU interface providing fixed point interface  */
 struct Imu {
   struct Int32Rates gyro;             ///< gyroscope measurements
-  int32_t temp;
+  int32_t temp;                       ///< gyroscope temperature
   struct Int32Vect3 accel;            ///< accelerometer measurements
   struct Int32Vect3 mag;              ///< magnetometer measurements
   struct Int32Rates gyro_prev;        ///< previous gyroscope measurements
@@ -103,7 +103,7 @@ extern void imu_init(void);
 #define ImuScaleGyro(_imu) {					\
     RATES_COPY(_imu.gyro_prev, _imu.gyro);				\
     _imu.gyro.p = ((_imu.gyro_unscaled.p +(TREF-imu.temp)*DXG - _imu.gyro_neutral.p)*IMU_GYRO_P_SIGN*IMU_GYRO_P_SENS_NUM)/IMU_GYRO_P_SENS_DEN; \
-    _imu.gyro.q = ((_imu.gyro_unscaled.q +(TREF-imu.temp)*DYG- _imu.gyro_neutral.q)*IMU_GYRO_Q_SIGN*IMU_GYRO_Q_SENS_NUM)/IMU_GYRO_Q_SENS_DEN; \
+    _imu.gyro.q = ((_imu.gyro_unscaled.q +(TREF-imu.temp)*DYG - _imu.gyro_neutral.q)*IMU_GYRO_Q_SIGN*IMU_GYRO_Q_SENS_NUM)/IMU_GYRO_Q_SENS_DEN; \
     _imu.gyro.r = ((_imu.gyro_unscaled.r +(TREF-imu.temp)*DZG - _imu.gyro_neutral.r)*IMU_GYRO_R_SIGN*IMU_GYRO_R_SENS_NUM)/IMU_GYRO_R_SENS_DEN; \
   }
 #else

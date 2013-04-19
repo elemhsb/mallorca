@@ -27,6 +27,7 @@
     <subsystem name="navigation"/>
     <!-- Sensors -->
     <subsystem name="gps" type="ublox"/>
+    <subsystem name="ins" type="alt_float"/>
   </firmware>
 
 

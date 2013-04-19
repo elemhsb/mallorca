@@ -41,7 +41,7 @@
       hmc5843.data_available = FALSE;		\
     }										\
   }
-#endif
+#endif // MPU6000_NO_SLAVES
 
 #if defined IMU_ASPIRIN_VERSION_2_1 || defined IMU_ASPIRIN_VERSION_2_2
 #if !defined IMU_MAG_X_SIGN & !defined IMU_MAG_Y_SIGN & !defined IMU_MAG_Z_SIGN
