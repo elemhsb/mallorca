@@ -166,7 +166,8 @@ static inline void on_gyro_accel_event(void) {
     DOWNLINK_SEND_IMU_GYRO_RAW(DefaultChannel,
                    &imu.gyro_unscaled.p,
                    &imu.gyro_unscaled.q,
-                   &imu.gyro_unscaled.r);
+                   &imu.gyro_unscaled.r,
+                   &imu.temp);
 
     DOWNLINK_SEND_IMU_ACCEL_RAW(DefaultChannel,
                 &imu.accel_unscaled.x,

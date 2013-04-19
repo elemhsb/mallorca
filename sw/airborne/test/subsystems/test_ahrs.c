@@ -126,7 +126,8 @@ static inline void main_report(void) {
 			 DOWNLINK_SEND_IMU_GYRO_RAW(DefaultChannel, DefaultDevice,
 						    &imu.gyro_unscaled.p,
 						    &imu.gyro_unscaled.q,
-						    &imu.gyro_unscaled.r);
+						    &imu.gyro_unscaled.r,
+						    &imu.temp);
 		       },
 		       {
 			 DOWNLINK_SEND_IMU_MAG_RAW(DefaultChannel, DefaultDevice,

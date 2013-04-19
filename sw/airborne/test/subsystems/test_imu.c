@@ -146,7 +146,8 @@ static inline void on_gyro_event(void) {
     DOWNLINK_SEND_IMU_GYRO_RAW(DefaultChannel, DefaultDevice,
                    &imu.gyro_unscaled.p,
                    &imu.gyro_unscaled.q,
-                   &imu.gyro_unscaled.r);
+                   &imu.gyro_unscaled.r,
+                   &imu.temp);
   }
   else if (cnt == 7) {
     DOWNLINK_SEND_IMU_GYRO_SCALED(DefaultChannel, DefaultDevice,
