@@ -124,4 +124,5 @@ void actuators_asctec_set(bool_t motors_on) {
 
   i2c_transmit(&ACTUATORS_ASCTEC_I2C_DEV, &actuators_asctec.i2c_trans,
               ACTUATORS_ASCTEC_SLAVE_ADDR, 4);
+
 }

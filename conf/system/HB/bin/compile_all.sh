@@ -22,17 +22,17 @@ cd $PAPARAZZI_HOME
 #   Umarim_Lite \
 #   Umarim_Lite_HB \
 
+#   HBMINI_V1 \
+#   HBMINI_V2_FUNJET \
+#   HBMINI_V3 \
+#   HB_f \
+#   Twinjet \
+#   Twog_IMU \
+#   Umarim_Lite \
+#   Umarim_Lite_HB
 for AIRCRAFT in \
-   HBMINI_V1 \
    HBMINI_V2 \
-   HBMINI_V2_Q_MPU6000 \
-   HBMINI_V2_FUNJET \
-   HBMINI_V3 \
-   HB_f \
-   Twinjet \
-   Twog_IMU \
-   Umarim_Lite \
-   Umarim_Lite_HB
+   HBMINI_V2_Q_MPU6000 
 do
 	echo $AIRCRAFT
 	make AIRCRAFT=$AIRCRAFT clean_ac ap 2>&1 | egrep 'ap.elf  :|error|warning|\\\*\\\*\\\*'

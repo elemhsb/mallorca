@@ -30,12 +30,6 @@ static void EXTINT0_ISR(void) __attribute__((naked));
 
 void max1168_arch_init( void ) {
 
-//FIXME olri is this needed here ?
-//#if CS_74138
-//  /* P1.25-16 are used as GPIO */
-//  PINSEL2 &= ~(_BV(3));
-//#endif // CS_74138
-
   /* connect P0.16 to extint0 (EOC) */
   MAX1168_EOC_PINSEL |= MAX1168_EOC_PINSEL_VAL << MAX1168_EOC_PINSEL_BIT;
   /* extint0 is edge trigered */
