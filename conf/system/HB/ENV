@@ -1,7 +1,14 @@
+#!source-it-with:_"._./ENV"
+
 export PAPARAZZI_HOME=`pwd`;
 export PAPARAZZI_SRC=$PAPARAZZI_HOME;
+
 export EDITOR=gedit
+
 export LD_LIBRARY_PATH=/opt/jsbsim/lib
+export LANG=C
+export LC_COLLATE=C
+
 export MANPATH=$MANPATH:/opt/paparazzi/arm-multilib/share/man
 
 if [ "$AIRCRAFT" = "" ] ; then

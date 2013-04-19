@@ -1,6 +1,7 @@
 #!/bin/sh
 
-LANG=C
+cd $PAPARAZZI_HOME
+. ./ENV
 
 for i in $( grep name conf/conf.xml | sed 's/.*="//; s/"//' )
 do
