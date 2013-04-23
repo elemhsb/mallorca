@@ -19,8 +19,8 @@
  * Boston, MA 02111-1307, USA.
  *
  */
-#include "subsystems/actuators.h"
-
+// old olri #include "subsystems/actuators.h"
+#include "servos_4017_hw.h"
 #include "paparazzi.h"
 #include "generated/airframe.h"
 

@@ -2,9 +2,9 @@
 <!-- <!DOCTYPE airframe SYSTEM "../../airframe.dtd"> -->
 
 <airframe name="HBMINI_V2">
- <!-- HBmini17_V2  with 1168  IDG500 ISZ505
+ <!-- HBmini21_V2  with 1168  IDG500 ISZ505
     Heinrich Warmers  11/2012
-    quadrocopter with microkopter motor controller over i2c
+    quadrocopter with mikrokopter motor controller over i2c
 -->
   <modules main_freq="512">
     <!--load name="booz_pwm.xml">

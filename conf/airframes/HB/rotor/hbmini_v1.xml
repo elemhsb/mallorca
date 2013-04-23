@@ -13,8 +13,8 @@
     <load name="booz_cam.xml"/-->
     <load name="mag_hmc5843_i2c1.xml"/>
    <!--  <load name="baro_bmp.xml"/> -->
-    <load name="gps_ubx_ucenter.xml"/>
     <load name="bat_checker.xml"/> 
+    <load name="gps_ubx_ucenter.xml"/>
   </modules>
 
 <!-- olri
@@ -44,17 +44,20 @@
     <define name="NB" value="4"/>
     <define name="ADDR" value="{ 0x52, 0x54, 0x56, 0x58 }"/>
   </section>
+<!-- old olri
   <section name="ACTUATORS" prefix="ACTUATORS_">
     <define name="NB" value="4"/>
     <define name="ADDR" value="{ 0x52, 0x54, 0x56, 0x58 }"/>
   </section>
-
+olri -->
+<!-- weg olri
 <section name="BAT"> 
     <define name="CRITIC_BAT_LEVEL" value="9.6"/>
     <define name="BAT_CHECKER_LED" value="3"/>
     <define name="BAT_CHECKER_DELAY" value="3"/>
     <define name="LOW_BAT_LEVEL" value="9.3"/>
 </section>
+-->
 
 <!-- old olri
   <section name="SUPERVISION" prefix="SUPERVISION_">
@@ -233,7 +236,7 @@
 
  <section name="AUTOPILOT">
    <define name="MODE_MANUAL" value="AP_MODE_ATTITUDE_DIRECT"/>
-   <define name="MODE_AUTO1" value="AP_MODE_HOVER_Z_HOLD"/>
+   <define name="MODE_AUTO1" value="AP_MODE_ATTITUDE_Z_HOLD"/>
    <define name="MODE_AUTO2" value="AP_MODE_HOVER_Z_HOLD"/>
  </section>
 

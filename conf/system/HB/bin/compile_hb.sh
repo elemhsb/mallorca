@@ -22,20 +22,18 @@ cd $PAPARAZZI_HOME
 #   Umarim_Lite \
 #   Umarim_Lite_HB \
 
-#   HBMINI_V1 \
-#   HBMINI_V2_FUNJET \
 #   HB_f \
-#   HBMINI_V3 \
 
 for AIRCRAFT in \
+   HBMINI_V1 \
    HBMINI_V2 \
+   HBMINI_V2_FUNJET \
+   HBMINI_V3 \
    HBMINI_V2_Q_MPU6000 \
    Twinjet \
    Twog_IMU \
    Umarim_Lite \
    Umarim_Lite_HB
 do
-	echo $AIRCRAFT
-	make AIRCRAFT=$AIRCRAFT clean_ac ap 2>&1 | egrep -i 'ap.elf  :|error|warning|\*'
-	echo "--------------------------------------------------------------------------"; echo
+	bin/compile.sh 2>&1 | egrep -i 'ap.elf  :|error|warning|\*' | grep -v waypoint
 done

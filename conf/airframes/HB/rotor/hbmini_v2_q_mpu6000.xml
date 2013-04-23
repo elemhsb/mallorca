@@ -95,13 +95,14 @@ olri -->
     <define name="GYRO_P_SENS" value=" 1.24" integer="16"/>
     <define name="GYRO_Q_SENS" value=" 1.24" integer="16"/>
     <define name="GYRO_R_SENS" value=" 0.91" integer="16"/>
+-->
+    <define name="ACCEL_X_SIGN" value="-1"/>
+    <define name="ACCEL_Y_SIGN" value="1"/>
+    <define name="ACCEL_Z_SIGN" value="-1"/>
 
-    <define name="ACCEL_X_NEUTRAL" value="26250"/>
-    <define name="ACCEL_Y_NEUTRAL" value="26100"/>
-    <define name="ACCEL_Z_NEUTRAL" value="26300"/>
-    <define name="ACCEL_X_SENS" value="1.94" integer="16"/>
-    <define name="ACCEL_Y_SENS" value="1.94" integer="16"/>
-    <define name="ACCEL_Z_SENS" value="1.94" integer="16"/> -->
+    <define name="ACCEL_X_NEUTRAL" value="50"/>
+    <define name="ACCEL_Y_NEUTRAL" value="40"/>
+    <define name="ACCEL_Z_NEUTRAL" value="-320"/>
 
     <define name="GYRO_P_SIGN" value="-1"/>
     <define name="GYRO_Q_SIGN" value="1"/>
@@ -111,15 +112,6 @@ olri -->
     <define name="GYRO_P_NEUTRAL" value="0"/>
     <define name="GYRO_Q_NEUTRAL" value="0"/>
     <define name="GYRO_R_NEUTRAL" value="0"/>
-
-    <define name="ACCEL_X_SIGN" value="-1"/>
-    <define name="ACCEL_Y_SIGN" value="1"/>
-    <define name="ACCEL_Z_SIGN" value="-1"/>
-
-<define name="ACCEL_X_NEUTRAL" value="-67"/>
-<define name="ACCEL_Y_NEUTRAL" value="30"/>
-<define name="ACCEL_Z_NEUTRAL" value="-380"/>
-
 
 
     <define name="MAG_X_NEUTRAL" value="103"/>
@@ -285,6 +277,7 @@ olri -->
        <define name="USE_LED_6" value="1"/>
        <define name="BAT_CHECKER_DELAY" value="2"/>
        <define name="HBminiBMP" value="1"/>
+<!-- noch nicht fuer MPU6000 
        <define name="DXA" value="-0.0785"/>
        <define name="DYA" value="-0.0338"/>
        <define name="DZA" value="-0.171"/>
@@ -292,6 +285,7 @@ olri -->
        <define name="DYG" value="-0.1592"/>
        <define name="DZG" value="-0.0"/>
        <define name="TREF" value="19420"/>
+-->
       <define name="USE_MOTOR_MIXING" value="1"/>
 
 

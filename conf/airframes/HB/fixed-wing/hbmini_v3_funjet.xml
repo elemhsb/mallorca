@@ -157,7 +157,7 @@
     <define name="NOMINAL_AIRSPEED" value="12.5" unit="m/s"/>
     <define name="CARROT" value="5." unit="s"/>
     <define name="KILL_MODE_DISTANCE" value="(1.5*MAX_DIST_FROM_HOME)"/>
-    <define name="CONTROL_RATE" value="60" unit="Hz"/>
+    <define name="CONTROL_FREQUENCY"  value="60" unit="Hz"/>
     <define name="ALT_KALMAN_ENABLED" value="TRUE"/>
     <define name="TRIGGER_DELAY" value="1."/>
     <define name="DEFAULT_CIRCLE_RADIUS" value="50."/>
@@ -262,8 +262,9 @@
     <subsystem name="control"/>
     <!-- Sensors -->
     <subsystem name="imu" type="b2_v1.0"/> 
-  <!--   <subsystem name="imu"     type="aspirin2_i2c"/> 
+    <!-- <subsystem name="imu"     type="aspirin2_i2c"/>
     <subsystem name="ahrs" type="int_cmpl_euler"/> -->
+
     <!--  <subsystem name="ins" type="hff"/> -->
     <subsystem name="ahrs"  type="float_dcm"/> 
     <subsystem name="gps"       type="ublox"/>

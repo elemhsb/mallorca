@@ -177,7 +177,6 @@ static inline void imu_aspirin2_event(void (* _gyro_handler)(void), void (* _acc
     if (imu_from_buff(imu_aspirin2.input_buf_p)) {
       _gyro_handler();
       _accel_handler();
-      _mag_handler();
 #if !MPU6000_NO_SLAVES
       _mag_handler();   //WARM
 #endif // !MPU6000_NO_SLAVES
