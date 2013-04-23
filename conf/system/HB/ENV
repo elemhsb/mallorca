@@ -17,7 +17,7 @@ if [ "$AIRCRAFT" = "" ] ; then
 	export AIRCRAFT=HBMINI_V2_Q_MPU6000
 
 	# set debugging link to act. aircraft
-	rm $PAPARAZZI_HOME/var/current
+	rm -f $PAPARAZZI_HOME/var/current
 	ln -s $AIRCRAFT $PAPARAZZI_HOME/var/current
 	
 	# add bin/ to PATH

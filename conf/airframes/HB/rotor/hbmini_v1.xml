@@ -44,6 +44,10 @@
     <define name="NB" value="4"/>
     <define name="ADDR" value="{ 0x52, 0x54, 0x56, 0x58 }"/>
   </section>
+  <section name="ACTUATORS" prefix="ACTUATORS_">
+    <define name="NB" value="4"/>
+    <define name="ADDR" value="{ 0x52, 0x54, 0x56, 0x58 }"/>
+  </section>
 
 <section name="BAT"> 
     <define name="CRITIC_BAT_LEVEL" value="9.6"/>
@@ -52,6 +56,7 @@
     <define name="LOW_BAT_LEVEL" value="9.3"/>
 </section>
 
+<!-- old olri
   <section name="SUPERVISION" prefix="SUPERVISION_">
     <define name="MIN_MOTOR" value="2"/>
     <define name="MAX_MOTOR" value="210"/>
@@ -65,6 +70,27 @@
     <define name="YAW_COEF" value="{ -256, -256,  256,  256}"/>
     <define name="THRUST_COEF" value="{ 256,  256,  256,  256}"/>
   </section>
+  olri -->
+
+  <section name="MIXING" prefix="MOTOR_MIXING_">
+    <define name="TRIM_ROLL" value="0"/>
+    <define name="TRIM_PITCH" value="0"/>
+    <define name="TRIM_YAW" value="0"/>
+    <define name="NB_MOTOR" value="4"/>
+    <define name="SCALE" value="256"/>
+    <define name="ROLL_COEF" value="{    0,    0, -256,  256}"/>
+    <define name="PITCH_COEF" value="{  256, -256,    0,    0}"/>
+    <define name="YAW_COEF" value="{ -256, -256,  256,  256}"/>
+    <define name="THRUST_COEF" value="{ 256,  256,  256,  256}"/>
+  </section>
+
+  <command_laws>
+    <call fun="motor_mixing_run(autopilot_motors_on,FALSE,values)"/>
+    <set servo="FRONT"  value="motor_mixing.commands[SERVO_FRONT]"/>
+    <set servo="BACK"   value="motor_mixing.commands[SERVO_BACK]"/>
+    <set servo="RIGHT"  value="motor_mixing.commands[SERVO_RIGHT]"/>
+    <set servo="LEFT"   value="motor_mixing.commands[SERVO_LEFT]"/>
+  </command_laws>
 
   <section name="IMU" prefix="IMU_">
 
@@ -252,6 +278,7 @@
     <subsystem name="radio_control" type="ppm"/>
     <subsystem name="telemetry" type="transparent"/>
     <configure name="MODEM_BAUD" value="B38400"/>
+    <subsystem name="motor_mixing"/>
     <subsystem name="actuators" type="mkk"/>
     <subsystem name="imu" type="b2_v1.0"/>
     <subsystem name="gps" type="ublox"/>

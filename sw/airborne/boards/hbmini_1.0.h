@@ -181,12 +181,48 @@
 //#define MODEM_DEVICE Uart1
 //#define MODEM_UART_FLAG
 
+/* Default actuators driver */
+//#define CFG_ROTORCRAFT
+#ifdef FIRMWARE // we assume ROTOCRAFT
+#define ACTUATORS_MKK_NB 4
+#define DEFAULT_ACTUATORS "subsystems/actuators/actuators_mkk.h"
+#define ActuatorDefaultSet(_x,_y) ActuatorMkkSet(_x,_y)
+#define ActuatorsDefaultInit() ActuatorsMkkInit()
+#define ActuatorsDefaultCommit() ActuatorsMkkCommit()
+#else
+#define DEFAULT_ACTUATORS "subsystems/actuators/actuators_4017.h"
+#define ActuatorDefaultSet(_x,_y) Actuator4017Set(_x,_y)
+#define ActuatorsDefaultInit() Actuators4017Init()
+#define ActuatorsDefaultCommit() Actuators4017Commit()
+#endif
 /* P0.5 aka MAT0.1  */
 #define SERVO_CLOCK_PIN  5
 #define SERVO_CLOCK_PINSEL PINSEL0
 #define SERVO_CLOCK_PINSEL_VAL 0x02
 #define SERVO_CLOCK_PINSEL_BIT 10
 // p1.24
+// SPI PINS and PORTS
+/** */
+#define USE_SPI1 1
+#define SPI_MASTER 1
+/** Todo: right for hbmini ? olri */
 #define SERVO_RESET_PIN 24
+#define SPI_SELECT_SLAVE0_PORT 0
+#define SPI_SELECT_SLAVE0_PIN 20
+#define SPI_SELECT_SLAVE0_PINSEL PINSEL1
+#define SPI_SELECT_SLAVE0_PINSEL_BIT 8
+#define SPI_SELECT_SLAVE0_PINSEL_VAL 0
+
+/* MAX1168 EOC pin (e.g. booz2 imu) */
+/** Todo: right for hbmini ? olri */
+#define MAX1168_EOC_PIN 16
+#define MAX1168_EOC_PINSEL PINSEL1
+#define MAX1168_EOC_PINSEL_BIT 0
+#define MAX1168_EOC_PINSEL_VAL 1
+#define MAX1168_EOC_EINT 0
+#define MAX1168_EOC_VIC_IT VIC_EINT0
+
+/* HMC5843 PORT */
+#define HMC5843_I2C_DEV i2c1
 
 #endif /* CONFIG_HBMINI_V1_0_H */
