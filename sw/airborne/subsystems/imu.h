@@ -47,6 +47,7 @@ struct Imu {
   struct Int32Vect3 accel_neutral;    ///< accelerometer bias
   struct Int32Vect3 mag_neutral;      ///< magnetometer neutral readings (bias)
   struct Int32Rates gyro_unscaled;    ///< unscaled gyroscope measurements
+  int32_t temp_unscaled;              ///< unscaled gyroscope temperature
   struct Int32Vect3 accel_unscaled;   ///< unscaled accelerometer measurements
   struct Int32Vect3 mag_unscaled;     ///< unscaled magnetometer measurements
   struct Int32Quat  body_to_imu_quat; ///< rotation from body to imu frame as a unit quaternion
@@ -57,6 +58,7 @@ struct Imu {
 struct ImuFloat {
   struct FloatRates   gyro;
   float  			  temp;
+  float				  temp_unscaled;
   struct FloatVect3   accel;
   struct FloatVect3   mag;
   struct FloatRates   gyro_prev;

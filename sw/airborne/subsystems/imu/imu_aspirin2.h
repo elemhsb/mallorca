@@ -128,7 +128,7 @@ extern struct ImuAspirin2 imu_aspirin2;
 
 static inline int imu_from_buff(volatile uint8_t *buf)
 {
-  int32_t x, y, z, p, q, r;
+  int32_t x, y, z, p, q, r, te;
 
 #define MPU_OFFSET_STATUS 1
   if (!(buf[MPU_OFFSET_STATUS] & 0x01)) {
@@ -146,9 +146,12 @@ static inline int imu_from_buff(volatile uint8_t *buf)
   z = (int16_t) ((buf[4+MPU_OFFSET_ACC] << 8) | buf[5+MPU_OFFSET_ACC]);
 
 #define MPU_OFFSET_TEMP 8
-  imu.temp = (int32_t) (((float)((int16_t)(buf[0+MPU_OFFSET_TEMP] << 8) | buf[1+MPU_OFFSET_TEMP])/340+36.53)*10); // store for temperature correction
+  te = (int16_t) ((buf[0+MPU_OFFSET_TEMP] << 8) | buf[1+MPU_OFFSET_TEMP]);
+  imu.temp_unscaled = te;
+  imu.temp = (int32_t)((float)(te)/34+365.3); // store for temperature correction
   if( (-300 > imu.temp || imu.temp > 800) ) { // kills temp hangs, out of range
-	  imu.temp = 370;
+	  imu.temp = 373;
+	  imu.temp_unscaled = (imu.temp*34)-365.3;
   }
 
 #if !MPU6000_NO_SLAVES || LISA_M_LONGITUDINAL_X
