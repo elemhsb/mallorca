@@ -211,6 +211,12 @@ void aspirin2_subsystem_event( void )
 
     VECT3_ASSIGN(imu.accel_unscaled, x, y, z);
 
+#define MPU_OFFSET_TEMP 7
+    imu.temp = (int32_t) (((float)((int16_t)(buf[0+MPU_OFFSET_TEMP] << 8) | buf[1+MPU_OFFSET_TEMP])/340+36.53)*10); // store for temperature correction
+    if( (-300 > imu.temp || imu.temp > 800) ) { // kills temp hangs, out of range
+	  imu.temp = 370;
+    }
+
     // Is this is new data
     if (aspirin2_mpu60x0.buf[0] & 0x01)
     {
