@@ -24,6 +24,7 @@
 
 #include "generated/airframe.h"
 #include "subsystems/imu.h"
+#include "peripherals/mpu60X0.h"
 
 #if MPU6000_NO_SLAVES
    //WARM hmc5843 runs on lpc2148 i2c
@@ -143,6 +144,12 @@ static inline int imu_from_buff(volatile uint8_t *buf)
   x = (int16_t) ((buf[0+MPU_OFFSET_ACC] << 8) | buf[1+MPU_OFFSET_ACC]);
   y = (int16_t) ((buf[2+MPU_OFFSET_ACC] << 8) | buf[3+MPU_OFFSET_ACC]);
   z = (int16_t) ((buf[4+MPU_OFFSET_ACC] << 8) | buf[5+MPU_OFFSET_ACC]);
+
+#define MPU_OFFSET_TEMP 8
+  imu.temp = (int32_t) (((float)((int16_t)(buf[0+MPU_OFFSET_TEMP] << 8) | buf[1+MPU_OFFSET_TEMP])/340+36.53)*10); // store for temperature correction
+  if( (-300 > imu.temp || imu.temp > 800) ) { // kills temp hangs, out of range
+	  imu.temp = 370;
+  }
 
 #if !MPU6000_NO_SLAVES || LISA_M_LONGITUDINAL_X
 #define MPU_OFFSET_MAG 16
