@@ -104,9 +104,9 @@ extern void imu_init(void);
 #ifdef TREF
 #define ImuScaleGyro(_imu) {					\
     RATES_COPY(_imu.gyro_prev, _imu.gyro);				\
-    _imu.gyro.p = ((_imu.gyro_unscaled.p +(TREF-imu.temp)*DXG - _imu.gyro_neutral.p)*IMU_GYRO_P_SIGN*IMU_GYRO_P_SENS_NUM)/IMU_GYRO_P_SENS_DEN; \
-    _imu.gyro.q = ((_imu.gyro_unscaled.q +(TREF-imu.temp)*DYG - _imu.gyro_neutral.q)*IMU_GYRO_Q_SIGN*IMU_GYRO_Q_SENS_NUM)/IMU_GYRO_Q_SENS_DEN; \
-    _imu.gyro.r = ((_imu.gyro_unscaled.r +(TREF-imu.temp)*DZG - _imu.gyro_neutral.r)*IMU_GYRO_R_SIGN*IMU_GYRO_R_SENS_NUM)/IMU_GYRO_R_SENS_DEN; \
+    _imu.gyro.p = ((_imu.gyro_unscaled.p +(TREF-imu.temp_unscaled)*DXG - _imu.gyro_neutral.p)*IMU_GYRO_P_SIGN*IMU_GYRO_P_SENS_NUM)/IMU_GYRO_P_SENS_DEN; \
+    _imu.gyro.q = ((_imu.gyro_unscaled.q +(TREF-imu.temp_unscaled)*DYG - _imu.gyro_neutral.q)*IMU_GYRO_Q_SIGN*IMU_GYRO_Q_SENS_NUM)/IMU_GYRO_Q_SENS_DEN; \
+    _imu.gyro.r = ((_imu.gyro_unscaled.r +(TREF-imu.temp_unscaled)*DZG - _imu.gyro_neutral.r)*IMU_GYRO_R_SIGN*IMU_GYRO_R_SENS_NUM)/IMU_GYRO_R_SENS_DEN; \
   }
 #else
 #define ImuScaleGyro(_imu) {					\
@@ -123,9 +123,9 @@ extern void imu_init(void);
 #ifdef TREF
 #define ImuScaleAccel(_imu) {					\
     VECT3_COPY(_imu.accel_prev, _imu.accel);				\
-    _imu.accel.x = ((_imu.accel_unscaled.x +(TREF-imu.temp)*DXA - _imu.accel_neutral.x)*IMU_ACCEL_X_SIGN*IMU_ACCEL_X_SENS_NUM)/IMU_ACCEL_X_SENS_DEN; \
-    _imu.accel.y = ((_imu.accel_unscaled.y +(TREF-imu.temp)*DYA - _imu.accel_neutral.y)*IMU_ACCEL_Y_SIGN*IMU_ACCEL_Y_SENS_NUM)/IMU_ACCEL_Y_SENS_DEN; \
-    _imu.accel.z = ((_imu.accel_unscaled.z +(TREF-imu.temp)*DZA - _imu.accel_neutral.z)*IMU_ACCEL_Z_SIGN*IMU_ACCEL_Z_SENS_NUM)/IMU_ACCEL_Z_SENS_DEN; \
+    _imu.accel.x = ((_imu.accel_unscaled.x +(TREF-imu.temp_unscaled)*DXA - _imu.accel_neutral.x)*IMU_ACCEL_X_SIGN*IMU_ACCEL_X_SENS_NUM)/IMU_ACCEL_X_SENS_DEN; \
+    _imu.accel.y = ((_imu.accel_unscaled.y +(TREF-imu.temp_unscaled)*DYA - _imu.accel_neutral.y)*IMU_ACCEL_Y_SIGN*IMU_ACCEL_Y_SENS_NUM)/IMU_ACCEL_Y_SENS_DEN; \
+    _imu.accel.z = ((_imu.accel_unscaled.z +(TREF-imu.temp_unscaled)*DZA - _imu.accel_neutral.z)*IMU_ACCEL_Z_SIGN*IMU_ACCEL_Z_SENS_NUM)/IMU_ACCEL_Z_SENS_DEN; \
   }
 #else
 #define ImuScaleAccel(_imu) {					\

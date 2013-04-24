@@ -166,6 +166,7 @@
                    &imu.gyro_unscaled.p,		\
                    &imu.gyro_unscaled.q,		\
                    &imu.gyro_unscaled.r,		\
+                   &imu.temp_unscaled,          \
                    &imu.temp);					\
   }
 

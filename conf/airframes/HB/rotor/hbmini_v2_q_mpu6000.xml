@@ -277,6 +277,7 @@ olri -->
        <define name="USE_LED_6" value="1"/>
        <define name="BAT_CHECKER_DELAY" value="2"/>
        <define name="HBminiBMP" value="1"/>
+
 <!-- noch nicht fuer MPU6000 
        <define name="DXA" value="-0.0785"/>
        <define name="DYA" value="-0.0338"/>

@@ -208,10 +208,11 @@ static inline void main_event_task( void ) {
     MyByteSwap16(*(int16_t*)(i2c_trans.buf+6), tgr);
 #endif
     struct Int32Rates g;
+    int32_t temp = 373;
     RATES_ASSIGN(g, tgp, tgq, tgr);
     RunOnceEvery(10,
     {
-      DOWNLINK_SEND_IMU_GYRO_RAW(DefaultChannel, DefaultDevice, &g.p, &g.q, &g.r, &g.r);
+      DOWNLINK_SEND_IMU_GYRO_RAW(DefaultChannel, DefaultDevice, &g.p, &g.q, &g.r, &temp, &temp);
 
       uint8_t tmp[8];
       memcpy(tmp, i2c_trans.buf, 8);

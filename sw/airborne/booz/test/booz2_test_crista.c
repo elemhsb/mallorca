@@ -97,10 +97,12 @@ static inline void on_imu_event(void) {
   if (cnt > 15) cnt = 0;
 
   if (cnt == 0) {
+    int32_t temp = 373;
     DOWNLINK_SEND_IMU_GYRO_RAW(&imu_gyro_unscaled.x,
                    &imu_gyro_unscaled.y,
                    &imu_gyro_unscaled.z,
-                   &imu_gyro_unscaled.z);
+                   &temp,
+                   &temp);
 
     DOWNLINK_SEND_IMU_ACCEL_RAW(&imu_accel_unscaled.x,
                 &imu_accel_unscaled.y,
