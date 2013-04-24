@@ -99,6 +99,7 @@ static inline void on_imu_event(void) {
   if (cnt == 0) {
     DOWNLINK_SEND_IMU_GYRO_RAW(&imu_gyro_unscaled.x,
                    &imu_gyro_unscaled.y,
+                   &imu_gyro_unscaled.z,
                    &imu_gyro_unscaled.z);
 
     DOWNLINK_SEND_IMU_ACCEL_RAW(&imu_accel_unscaled.x,

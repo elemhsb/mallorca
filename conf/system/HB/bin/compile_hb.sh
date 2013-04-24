@@ -35,5 +35,5 @@ for AIRCRAFT in \
    Umarim_Lite \
    Umarim_Lite_HB
 do
-	bin/compile.sh 2>&1 | egrep -i 'ap.elf  :|error|warning|\*' | grep -v waypoint
+	bin/compile.sh 2>&1 | egrep -i 'ap.elf  :|error|warning|\*' | uniq | grep -v waypoint
 done
