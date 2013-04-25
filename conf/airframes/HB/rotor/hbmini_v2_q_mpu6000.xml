@@ -278,16 +278,16 @@ olri -->
        <define name="BAT_CHECKER_DELAY" value="2"/>
        <define name="HBminiBMP" value="1"/>
 
-<!-- noch nicht fuer MPU6000 
-       <define name="DXA" value="-0.0785"/>
-       <define name="DYA" value="-0.0338"/>
-       <define name="DZA" value="-0.171"/>
-       <define name="DXG" value="0.1301"/>
-       <define name="DYG" value="-0.1592"/>
-       <define name="DZG" value="-0.0"/>
-       <define name="TREF" value="19420"/>
--->
-      <define name="USE_MOTOR_MIXING" value="1"/>
+<!-- MPU6000 temperature correction -->
+       <define name="DXA" value="0."/>
+       <define name="DYA" value="0."/>
+       <define name="DZA" value="-0.023448"/>
+       <define name="DXG" value="0."/>
+       <define name="DYG" value="0."/>
+       <define name="DZG" value="0."/>
+       <define name="TREF" value="1280"/>
+
+       <define name="USE_MOTOR_MIXING" value="1"/>
 
 
        <define name="BAT_CHECKER_DELAY" value="2"/>
