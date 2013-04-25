@@ -150,8 +150,8 @@ static inline int imu_from_buff(volatile uint8_t *buf)
   imu.temp_unscaled = te;
   imu.temp = (int32_t)((float)(te)/34+365.3); // store for temperature correction
   if( (-300 > imu.temp || imu.temp > 800) ) { // kills temp hangs, out of range
-	  imu.temp = 373;
-	  imu.temp_unscaled = (imu.temp*34)-365.3;
+	  imu.temp = 373; // set hard default value
+	  imu.temp_unscaled = (imu.temp-365.3)*34);
   }
 
 #if !MPU6000_NO_SLAVES || LISA_M_LONGITUDINAL_X

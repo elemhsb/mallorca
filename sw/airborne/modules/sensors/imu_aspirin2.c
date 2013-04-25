@@ -216,8 +216,8 @@ void aspirin2_subsystem_event( void )
     imu.temp_unscaled = te;
     imu.temp = (int32_t)((float)(te)/34+365.3); // store for temperature correction
     if( (-300 > imu.temp || imu.temp > 800) ) { // kills temp hangs, out of range
-  	  imu.temp = 373;
-  	  imu.temp_unscaled = (imu.temp*34)-365.3;
+  	  imu.temp = 373; // set hard default value
+  	  imu.temp_unscaled = (imu.temp-365.3)/34;
     }
 
     // Is this is new data
