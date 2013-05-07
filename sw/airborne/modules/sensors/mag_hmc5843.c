@@ -50,7 +50,7 @@ void hmc5843_module_periodic ( void )
   mag_z = hmc5843.data.value[2];
   RunOnceEvery(30,DOWNLINK_SEND_IMU_MAG_RAW(DefaultChannel, DefaultDevice,&mag_x,&mag_y,&mag_z));
   VECT3_ASSIGN(imu.mag_unscaled, mag_z, mag_x, mag_y); // WARM
-  // mag_valid = TRUE; // WARM
+  mag_valid = TRUE; // WARM
 }
 
 void hmc5843_module_event( void )
