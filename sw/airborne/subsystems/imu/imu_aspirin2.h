@@ -26,24 +26,6 @@
 #include "subsystems/imu.h"
 #include "peripherals/mpu60X0.h"
 
-#if MPU6000_NO_SLAVES
-   //WARM hmc5843 runs on lpc2148 i2c
-
-#include "peripherals/hmc5843.h"
-#define foo_handler() {}
-#define ImuMagEvent(_mag_handler) {			\
-    MagEvent(foo_handler);					\
-    if (hmc5843.data_available) {			\
-      imu.mag_unscaled.z = hmc5843.data.value[IMU_MAG_X_CHAN];	\
-      imu.mag_unscaled.y = hmc5843.data.value[IMU_MAG_Y_CHAN];	\
-      imu.mag_unscaled.x = hmc5843.data.value[IMU_MAG_Z_CHAN];  \
-											\
-      _mag_handler();						\
-      hmc5843.data_available = FALSE;		\
-    }										\
-  }
-#endif // MPU6000_NO_SLAVES
-
 #if defined IMU_ASPIRIN_VERSION_2_1 || defined IMU_ASPIRIN_VERSION_2_2
 #if !defined IMU_MAG_X_SIGN & !defined IMU_MAG_Y_SIGN & !defined IMU_MAG_Z_SIGN
 #define IMU_MAG_X_SIGN 1
@@ -171,6 +153,12 @@ static inline int imu_from_buff(volatile uint8_t *buf)
   VECT3_ASSIGN(imu.accel_unscaled, x, y, z);
 #if !MPU6000_NO_SLAVES
   VECT3_ASSIGN(imu.mag_unscaled, Mz, -Mx, My);
+#else
+  //   ImuScaleMag(imu);  // didn't work here, static inline and macro ?
+  imu.mag.x = ((imu.mag_unscaled.x - imu.mag_neutral.x) * IMU_MAG_X_SIGN * IMU_MAG_X_SENS_NUM) / IMU_MAG_X_SENS_DEN;
+  imu.mag.y = ((imu.mag_unscaled.y - imu.mag_neutral.y) * IMU_MAG_Y_SIGN * IMU_MAG_Y_SENS_NUM) / IMU_MAG_Y_SENS_DEN;
+  imu.mag.z = ((imu.mag_unscaled.z - imu.mag_neutral.z) * IMU_MAG_Z_SIGN * IMU_MAG_Z_SENS_NUM) / IMU_MAG_Z_SENS_DEN;
+  mag_valid = TRUE;
 #endif // !MPU6000_NO_SLAVES
 #endif // LISA_M_LONGITUDINAL_X
 

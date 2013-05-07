@@ -45,7 +45,7 @@
 #endif
 
 // if we don't have any accelerometers, set an empty ImuScaleAccel handler
-#if ! defined ADC_CHANNEL_ACCEL_X && ! defined ADC_CHANNEL_ACCEL_Z && ! defined ADC_CHANNEL_ACCEL_Z
+#if ! defined ADC_CHANNEL_ACCEL_X && ! defined ADC_CHANNEL_ACCEL_Y && ! defined ADC_CHANNEL_ACCEL_Z
 #define ImuScaleAccel(_imu) {}
 #endif
 
