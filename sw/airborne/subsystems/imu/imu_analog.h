@@ -21,7 +21,41 @@
 
 #ifndef IMU_ANALOG_H
 #define IMU_ANALOG_H
+/*****************
+<<<<<<< HEAD
+=======
 
+#define NB_ANALOG_IMU_ADC 6
+
+// if not all gyros are used, override the ImuScaleGyro handler
+#if defined ADC_CHANNEL_GYRO_P && defined ADC_CHANNEL_GYRO_Q && ! defined ADC_CHANNEL_GYRO_R
+
+#define IMU_GYRO_R_NEUTRAL 0
+#define ImuScaleGyro(_imu) {                                            \
+    _imu.gyro.p = ((_imu.gyro_unscaled.p - _imu.gyro_neutral.p)*IMU_GYRO_P_SIGN*IMU_GYRO_P_SENS_NUM)/IMU_GYRO_P_SENS_DEN; \
+    _imu.gyro.q = ((_imu.gyro_unscaled.q - _imu.gyro_neutral.q)*IMU_GYRO_Q_SIGN*IMU_GYRO_Q_SENS_NUM)/IMU_GYRO_Q_SENS_DEN; \
+  }
+
+#elif defined ADC_CHANNEL_GYRO_P && ! defined ADC_CHANNEL_GYRO_Q && ! defined ADC_CHANNEL_GYRO_R
+
+#define IMU_GYRO_Q_NEUTRAL 0
+#define IMU_GYRO_R_NEUTRAL 0
+#define ImuScaleGyro(_imu) {                                            \
+    _imu.gyro.p = ((_imu.gyro_unscaled.p - _imu.gyro_neutral.p)*IMU_GYRO_P_SIGN*IMU_GYRO_P_SENS_NUM)/IMU_GYRO_P_SENS_DEN; \
+  }
+
+#endif
+
+// if we don't have any accelerometers, set an empty ImuScaleAccel handler
+#if ! defined ADC_CHANNEL_ACCEL_X && ! defined ADC_CHANNEL_ACCEL_Y && ! defined ADC_CHANNEL_ACCEL_Z
+#define ImuScaleAccel(_imu) {}
+#endif
+
+//
+// we include imh.h after the definitions of ImuScale so we can override the default handlers
+// 
+>>>>>>> 4dfa3dc46339b5d88d95eb5bc94ebf81d305065d
+*****************/
 #include "subsystems/imu.h"
 
 #ifndef SITL

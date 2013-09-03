@@ -53,8 +53,6 @@
   </command_laws>
 
   <section name="IMU" prefix="IMU_">
-
-
   <!-- Nr. 5 -->
     <define name="ACCEL_X_NEUTRAL" value="26430"/>
     <define name="ACCEL_Y_NEUTRAL" value="26282"/>
