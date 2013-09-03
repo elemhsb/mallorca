@@ -401,7 +401,7 @@ olri -->
     <define name="USE_INS_NAV_INIT"/>
     <define name="USE_ATTITUDE_REF" value="0"/>
  <!--  <define name="AUTOPILOT_ARMING_THROTTLE_H" value="1"/>
-  <define name="RADIO_KILL_SWITCH" value="RADIO_GEAR"/> -->
+  <define name="RADIO_KILL_SWITCH" value="RADIO_RADIO_GEAR"/> -->
     <target name="ap" board="hbmini_2.0">
       <define name="CS_74138" value="1"/>
 	  <define name="IMU_HBMINI_I_VERSION_1_0" value="1"/>

@@ -1,6 +1,6 @@
 <!DOCTYPE flight_plan SYSTEM "../flight_plan.dtd">
 
-<flight_plan alt="0" ground_alt="12" lat0="52.9590888" lon0="8.7787333" max_dist_from_home="400" name="Dummy" qfu="270" security_height="1">
+<flight_plan alt="0" ground_alt="12" lat0="52.959229" lon0="8.7787333" max_dist_from_home="400" name="Dummy" qfu="270" security_height="1">
   <waypoints>
     <waypoint alt="1.5" name="D1" x="-0.2" y="-0.6"/>
     <waypoint alt="1.5" name="HOME" x="0.0" y="0.0"/>

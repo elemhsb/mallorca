@@ -19,7 +19,9 @@
     <subsystem name="radio_control" type="ppm"/>
 
     <!-- Communication -->
-    <subsystem name="telemetry" type="transparent"/>
+    <subsystem name="telemetry" type="transparent">
+    <configure name="MODEM_BAUD" value="B38400"/>
+    </subsystem>
 
     <!-- Actuators are automatically chosen according to board-->
     <subsystem name="imu"     type="umarim"/>

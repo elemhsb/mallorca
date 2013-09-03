@@ -39,6 +39,7 @@
       <define name="AHRS_GRAVITY_UPDATE_NORM_HEURISTIC" value="TRUE"/>
     </subsystem>
     <subsystem name="ins"/>
+    <define name="FG_2_4" value="1"/>
   </firmware>
 
   <servos driver="Pwm">
