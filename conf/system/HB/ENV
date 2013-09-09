@@ -14,7 +14,7 @@ export MANPATH=$MANPATH:/opt/paparazzi/arm-multilib/share/man
 if [ "$AIRCRAFT" = "" ] ; then
 	# select predefined AIRCRAFT
 	export AIRCRAFT=HBMINI_V2
-	export AIRCRAFT=HBMINI_V2_Q_MPU6000
+#	export AIRCRAFT=HBMINI_V2_Q_MPU6000
 
 	# set debugging link to act. aircraft
 	rm -f $PAPARAZZI_HOME/var/current
@@ -23,3 +23,6 @@ if [ "$AIRCRAFT" = "" ] ; then
 	# add bin/ to PATH
 	export PATH=$PATH:$PAPARAZZI_HOME/bin
 fi
+
+echo PAPARAZZI_HOME = "$PAPARAZZI_HOME"
+echo AIRCRAFT = "$AIRCRAFT"

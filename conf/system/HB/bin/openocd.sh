@@ -23,6 +23,7 @@ inline_edit()
 # Olimex ARM-USB-OCD config
 CONFIG=$OCDCONFDIR/openocd-arm-usb-ocd.cfg
 if [ ! -s $CONFIG ] ;  then
+	mkdir -p $OCDCONFDIR
 	cat \
 	    $OCDSCRIPTS/interface/olimex-arm-usb-ocd.cfg \
 	    $OCDSCRIPTS/target/lpc2148.cfg > $CONFIG
@@ -32,6 +33,7 @@ fi
 # Olimex ARM-USB-OCD-H config
 CONFIG_H=$OCDCONFDIR/openocd-arm-usb-ocd-h.cfg
 if [ ! -s $CONFIG_H ] ;  then
+	mkdir -p $OCDCONFDIR
 	cat \
 	    $OCDSCRIPTS/interface/olimex-arm-usb-ocd-h.cfg \
 	    $OCDSCRIPTS/target/lpc2148.cfg > $CONFIG_H

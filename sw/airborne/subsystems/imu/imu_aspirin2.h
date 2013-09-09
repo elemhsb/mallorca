@@ -158,7 +158,7 @@ static inline int imu_from_buff(volatile uint8_t *buf)
   imu.mag.x = ((imu.mag_unscaled.x - imu.mag_neutral.x) * IMU_MAG_X_SIGN * IMU_MAG_X_SENS_NUM) / IMU_MAG_X_SENS_DEN;
   imu.mag.y = ((imu.mag_unscaled.y - imu.mag_neutral.y) * IMU_MAG_Y_SIGN * IMU_MAG_Y_SENS_NUM) / IMU_MAG_Y_SENS_DEN;
   imu.mag.z = ((imu.mag_unscaled.z - imu.mag_neutral.z) * IMU_MAG_Z_SIGN * IMU_MAG_Z_SENS_NUM) / IMU_MAG_Z_SENS_DEN;
-  mag_valid = TRUE;
+ // OLRI  mag_valid = TRUE;
 #endif // !MPU6000_NO_SLAVES
 #endif // LISA_M_LONGITUDINAL_X
 
