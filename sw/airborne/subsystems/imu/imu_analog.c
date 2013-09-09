@@ -19,8 +19,21 @@
  * Boston, MA 02111-1307, USA.
  */
 
+#ifndef SITL
+
 #include "imu_analog.h"
 #include "mcu_periph/adc.h"
+#include "mcu_periph/uart.h"
+
+#ifdef SET_IMU_ZERO_ON_STARTUP
+int bias[6];
+/*float val1 = 0;
+float val2 = 0;
+float val3 = 0;
+float val4 = 0;
+float val5 = 0;
+float val6 = 0;*/
+#endif
 
 volatile bool_t analog_imu_available;
 int imu_overrun;
@@ -32,55 +45,52 @@ void imu_impl_init(void) {
   analog_imu_available = FALSE;
   imu_overrun = 0;
 
-#ifdef ADC_CHANNEL_GYRO_P
   adc_buf_channel(ADC_CHANNEL_GYRO_P, &analog_imu_adc_buf[0], ADC_CHANNEL_GYRO_NB_SAMPLES);
-#endif
-#ifdef ADC_CHANNEL_GYRO_Q
   adc_buf_channel(ADC_CHANNEL_GYRO_Q, &analog_imu_adc_buf[1], ADC_CHANNEL_GYRO_NB_SAMPLES);
-#endif
-#ifdef ADC_CHANNEL_GYRO_R
   adc_buf_channel(ADC_CHANNEL_GYRO_R, &analog_imu_adc_buf[2], ADC_CHANNEL_GYRO_NB_SAMPLES);
-#endif
-#ifdef ADC_CHANNEL_ACCEL_X
   adc_buf_channel(ADC_CHANNEL_ACCEL_X, &analog_imu_adc_buf[3], ADC_CHANNEL_ACCEL_NB_SAMPLES);
-#endif
-#ifdef ADC_CHANNEL_ACCEL_Y
   adc_buf_channel(ADC_CHANNEL_ACCEL_Y, &analog_imu_adc_buf[4], ADC_CHANNEL_ACCEL_NB_SAMPLES);
-#endif
-#ifdef ADC_CHANNEL_ACCEL_Z
   adc_buf_channel(ADC_CHANNEL_ACCEL_Z, &analog_imu_adc_buf[5], ADC_CHANNEL_ACCEL_NB_SAMPLES);
-#endif
 
 }
+#ifdef SET_IMU_ZERO_ON_STARTUP
+void imu_store_bias(void){
+  bias[0] = (analog_imu_adc_buf[0].sum / ADC_CHANNEL_GYRO_NB_SAMPLES);
+  bias[1] = (analog_imu_adc_buf[1].sum / ADC_CHANNEL_GYRO_NB_SAMPLES);
+  bias[2] = (analog_imu_adc_buf[2].sum / ADC_CHANNEL_GYRO_NB_SAMPLES);
+  bias[3] = (analog_imu_adc_buf[3].sum / ADC_CHANNEL_ACCEL_NB_SAMPLES);
+  bias[4] = (analog_imu_adc_buf[4].sum / ADC_CHANNEL_ACCEL_NB_SAMPLES);
+  bias[5] = (analog_imu_adc_buf[5].sum / ADC_CHANNEL_ACCEL_NB_SAMPLES);  
+}
+#endif
 
 void imu_periodic(void) {
   // Actual Nr of ADC measurements per channel per periodic loop
   static int last_head = 0;
-
+  
   imu_overrun = analog_imu_adc_buf[0].head - last_head;
   if (imu_overrun < 0)
     imu_overrun += ADC_CHANNEL_GYRO_NB_SAMPLES;
   last_head = analog_imu_adc_buf[0].head;
 
-  // Read All Measurements
-#ifdef ADC_CHANNEL_GYRO_P
-  imu.gyro_unscaled.p = analog_imu_adc_buf[0].sum / ADC_CHANNEL_GYRO_NB_SAMPLES;
-#endif
-#ifdef ADC_CHANNEL_GYRO_Q
-  imu.gyro_unscaled.q = analog_imu_adc_buf[1].sum / ADC_CHANNEL_GYRO_NB_SAMPLES;
-#endif
-#ifdef ADC_CHANNEL_GYRO_R
-  imu.gyro_unscaled.r = analog_imu_adc_buf[2].sum / ADC_CHANNEL_GYRO_NB_SAMPLES;
-#endif
-#ifdef ADC_CHANNEL_ACCEL_X
-  imu.accel_unscaled.x = analog_imu_adc_buf[3].sum / ADC_CHANNEL_ACCEL_NB_SAMPLES;
-#endif
-#ifdef ADC_CHANNEL_ACCEL_Y
-  imu.accel_unscaled.y = analog_imu_adc_buf[4].sum / ADC_CHANNEL_ACCEL_NB_SAMPLES;
-#endif
-#ifdef ADC_CHANNEL_ACCEL_Z
-  imu.accel_unscaled.z = analog_imu_adc_buf[5].sum / ADC_CHANNEL_ACCEL_NB_SAMPLES;
-#endif
-
+  #ifdef SET_IMU_ZERO_ON_STARTUP
+  // Read All Measurements using the bias measured on startup
+  imu.gyro_unscaled.p = (analog_imu_adc_buf[0].sum / ADC_CHANNEL_GYRO_NB_SAMPLES)-bias[0];
+  imu.gyro_unscaled.q = (analog_imu_adc_buf[1].sum / ADC_CHANNEL_GYRO_NB_SAMPLES)-bias[1];
+  imu.gyro_unscaled.r = (analog_imu_adc_buf[2].sum / ADC_CHANNEL_GYRO_NB_SAMPLES)-bias[2];
+  imu.accel_unscaled.x = (analog_imu_adc_buf[3].sum / ADC_CHANNEL_ACCEL_NB_SAMPLES)-bias[3];
+  imu.accel_unscaled.y = (analog_imu_adc_buf[4].sum / ADC_CHANNEL_ACCEL_NB_SAMPLES)-bias[4];
+  imu.accel_unscaled.z = (analog_imu_adc_buf[5].sum / ADC_CHANNEL_ACCEL_NB_SAMPLES)-bias[5]+ACCEL_Z_GRAVITY;
+  #else // olri elif
+  // Read All Measurements using the bias form the config
+  imu.gyro_unscaled.p = (analog_imu_adc_buf[0].sum / ADC_CHANNEL_GYRO_NB_SAMPLES);
+  imu.gyro_unscaled.q = (analog_imu_adc_buf[1].sum / ADC_CHANNEL_GYRO_NB_SAMPLES);
+  imu.gyro_unscaled.r = (analog_imu_adc_buf[2].sum / ADC_CHANNEL_GYRO_NB_SAMPLES);
+  imu.accel_unscaled.x = (analog_imu_adc_buf[3].sum / ADC_CHANNEL_ACCEL_NB_SAMPLES);
+  imu.accel_unscaled.y = (analog_imu_adc_buf[4].sum / ADC_CHANNEL_ACCEL_NB_SAMPLES);
+  imu.accel_unscaled.z = (analog_imu_adc_buf[5].sum / ADC_CHANNEL_ACCEL_NB_SAMPLES);  
+  #endif
+  
   analog_imu_available = TRUE;
 }
+#endif
