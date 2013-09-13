@@ -455,9 +455,11 @@ olri -->
 <!--
      <define name="USE_BARO_BMP" value="1"/>  -->
 <!-- LTC TEST 2013/09 olri -->
-       <define name="BARO_DIFF_LTC" value="ltc2485"/>
-       <define name="USE_LTC2485" value="1"/>
-       <define name="USE_BARO_DIFF" value="1"/>
+       <!-- geht nicht
+           <define name="BARO_DIFF_LTC" value="ltc2485"/>
+           <define name="USE_LTC2485" value="1"/>
+           <define name="USE_BARO_DIFF" value="1"/>
+	   -->
 <!-- LTC TEST 2013/09 olri -->
 
 <!--  AMS Test 2013/09 olri -->
