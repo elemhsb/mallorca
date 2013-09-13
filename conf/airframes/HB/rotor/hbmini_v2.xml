@@ -44,6 +44,10 @@
 
 <!-- AMS TEST 2013/09 olri -->
 
+<!-- OPENLOG 2013/09 olri -->
+  <load name="openlog.xml"/>
+<!-- OPENLOG 2013/09 olri -->
+
   </modules>
 
   <servos>

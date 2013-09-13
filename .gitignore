@@ -32,6 +32,8 @@
 /META-INF
 
 /var
++/var/logs
++/var/maps
 /dox
 
 /paparazzi

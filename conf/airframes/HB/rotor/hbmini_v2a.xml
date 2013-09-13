@@ -40,8 +40,11 @@
     <define name="BARO_FILTER" value="0."/>
   </load>
 -->
-
 <!-- AMS TEST 2013/09 olri -->
+
+<!-- OPENLOG 2013/09 olri -->
+  <load name="openlog.xml"/>
+<!-- OPENLOG 2013/09 olri -->
 
   </modules>
 
