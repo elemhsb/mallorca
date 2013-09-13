@@ -15,8 +15,35 @@
        <!--  <load name="baro_bmp.xml"/>   --> 
  <load name="bat_checker.xml"/> 
    <load name="gps_ubx_ucenter.xml"/>
-  </modules>
 
+<!-- LTC 2485 TEST 2013/09 olri -->
+    <!-- geht nicht
+       <load name="airspeed_ltc2485.xml"/>
+       <define name="AIRSPEED_LTC2485_I2C_DEV" value="i2c1">
+    -->
+<!-- LTC 2485 TEST 2013/09 olri -->
+
+<!-- AMS TEST 2013/09 olri -->
+  <load name="airspeed_amsys.xml">
+    <define name="AIRSPEED_SCALE" value="1."/>
+    <define name="AIRSPEED_FILTER" value="0.902000010014"/>
+    <define name="AIRSPEED_AMSYS_OFFSET" value="3300"/> <!-- ist in elemhsb-paparazzi nicht implementiert -->
+    <define name="AIRSPEED_AMSYS_I2C_DEV" value="i2c1"/>
+    <define name="AIRSPEED_AMSYS_ADDR" value="0xF0"/>
+    <define name="MEASURE_AMSYS_TEMPERATURE" value="1"/>
+  </load>
+
+<!-- Das brauchen wir gerade nicht ...
+  <load name="baro_amsys.xml">
+    <define name="BARO_AMSYS_I2C_DEV" value="i2c1"/>
+    <define name="BARO_AMSYS_ADDR" value="0xF0"/>
+    <define name="BARO_FILTER" value="0."/>
+  </load>
+-->
+
+<!-- AMS TEST 2013/09 olri -->
+
+  </modules>
 
   <servos>
     <servo name="FRONT" no="0" min="0" neutral="0" max="255"/>
@@ -434,6 +461,22 @@
 	<!--<define name="BOARD_HAS_BARO" value="1"/>  -->
 <!--
      <define name="USE_BARO_BMP" value="1"/>  -->
+<!-- LTC TEST 2013/09 olri -->
+       <!-- geht nicht
+           <define name="BARO_DIFF_LTC" value="ltc2485"/>
+           <define name="USE_LTC2485" value="1"/>
+           <define name="USE_BARO_DIFF" value="1"/>
+	   -->
+<!-- LTC TEST 2013/09 olri -->
+
+<!--  AMS Test 2013/09 olri -->
+       <define name="USE_I2C1"/>
+       <!--
+            <define name="USE_AIRSPEED"/>
+            <define name="SENSOR_SYNC_SEND"/>
+       -->
+<!--  AMS Test 2013/09 olri -->
+
     </target>
     <target name="nps" board="pc">
       <subsystem name="fdm" type="jsbsim"/>
