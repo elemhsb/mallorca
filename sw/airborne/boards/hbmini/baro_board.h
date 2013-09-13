@@ -40,8 +40,9 @@ static inline void baro_board_SetOffset(uint16_t _o) {
 
 #else // HBminiBMP
 
-#if USE_LTC2485
+#if USE_TC2485
 #include "peripherals/ltc2485.h" // olri
+#endif
 
 #define BaroEvent(_b_abs_handler, _b_diff_handler) {  \
     if (baro_board.data_available) {      \
@@ -51,7 +52,6 @@ static inline void baro_board_SetOffset(uint16_t _o) {
  /*   testing olri Ltc2485Event(); \
     BaroDiff(BARO_DIFF_LTC,_b_diff_handler); */ \
 	}
-#endif // USE_LTC2485
 
 // #ifndef BARO_BMP_H
 // #define BARO_BMP_H
