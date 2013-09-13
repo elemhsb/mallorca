@@ -234,7 +234,10 @@ STATIC_INLINE void main_event( void ) {
   }
 
   ImuEvent(on_gyro_event, on_accel_event, on_mag_event);
-
+#if USE_LTC2485 // olri its a hack not an feature
+#include <inttypes.h>
+#include "peripherals/ltc2485.h"
+#endif
   BaroEvent(on_baro_abs_event, on_baro_dif_event);
 
 #if USE_GPS

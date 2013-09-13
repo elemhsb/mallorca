@@ -1,6 +1,6 @@
 
-#ifndef BOARDS_BOOZ_BARO_H
-#define BOARDS_BOOZ_BARO_H
+#ifndef BOARDS_HBMINI_BARO_H
+#define BOARDS_HBMINI_BARO_H
 
 #if ! HBminiBMP
 
@@ -36,14 +36,21 @@ static inline void baro_board_SetOffset(uint16_t _o) {
   DACSet(_o);
 }
 
+#warning "UUUUUUUUUUUUUPPPPPS "
+
 #else // HBminiBMP
+
+#include "peripherals/ltc2485.h" // olri
+#warning "################################################  BING baro_board.h"
 
 #define BaroEvent(_b_abs_handler, _b_diff_handler) {  \
     if (baro_board.data_available) {      \
       _b_abs_handler();         \
       baro_board.data_available = FALSE;    \
     }             \
-  }
+ /*   Ltc2485Event(); \
+    BaroDiff(BARO_DIFF_LTC,_b_diff_handler); */ \
+	}
 
 // #ifndef BARO_BMP_H
 // #define BARO_BMP_H
@@ -106,5 +113,30 @@ void baro_bmp_init(void);
 void baro_bmp_periodic(void);
 void baro_bmp_event(void);
 
-#endif /*HBminiBMP */
-#endif /* BOARDS_BOOZ_BARO_H */
+
+#ifndef BaroDiff // Allow custom redefinition ?
+
+#if USE_BARO_DIFF
+
+#ifndef BARO_DIFF_LTC
+#define BARO_DIFF_LTC ltc2485
+#endif
+#define BaroDiff(_ltc, _handler) {              \
+  if (_ltc.data_available) {                    \
+    baro.differential = Ltc2485GetValue(_ltc);  \
+    if (baro.status == BS_RUNNING) {            \
+      _handler();                               \
+      _ltc.data_available = FALSE;              \
+    }                                           \
+  }                                             \
+}
+
+#else // Not using differential with ADS1114
+#define BaroDiff(_a, _h) {}
+#endif
+
+#endif // ifndef BaroDiff
+
+
+#endif /* else ! HBminiBMP */
+#endif /* BOARDS_HBMINI_BARO_H */

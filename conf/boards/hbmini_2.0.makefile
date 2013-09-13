@@ -65,6 +65,10 @@ ifndef ACTUATORS
 ACTUATORS = actuators_4017
 endif
 
+# Airspeed LTC2485
+ap_CFLAGS += -DUSE_I2C1 -DUSE_LTC2485
+ap_CFLAGS += -DLTC2485_I2C_DEV=i2c1
+ap_srcs += peripherals/ltc2485.c # olri funktioniert hier nicht so richtig ...
 
 # All targets on the TINY board run on the same processor achitecture
 $(TARGET).ARCHDIR = $(ARCH)

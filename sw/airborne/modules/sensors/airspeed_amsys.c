@@ -38,7 +38,9 @@
 //#endif
 #endif
 
+#ifndef AIRSPEED_AMSYS_ADDR
 #define AIRSPEED_AMSYS_ADDR 0xF4 // original F0
+#endif
 #ifndef AIRSPEED_AMSYS_SCALE
 #define AIRSPEED_AMSYS_SCALE 1
 #endif

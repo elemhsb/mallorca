@@ -14,7 +14,7 @@
    <load name="mag_hmc5843_i2c1.xml"/>
        <!--  <load name="baro_bmp.xml"/>   --> 
  <load name="bat_checker.xml"/> 
-   <load name="gps_ubx_ucenter.xml"/>    
+   <load name="gps_ubx_ucenter.xml"/>
   </modules>
 
 

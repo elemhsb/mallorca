@@ -1,0 +1,22 @@
+<!DOCTYPE module SYSTEM "module.dtd">
+
+<module name="airspeed_ltc2485" dir="sensors">
+  <doc>
+    <description>
+      LTC2485 airspeed sensor.
+      Module to extend the baro_board module with an airspeed sensor using ltc2485 adc
+    </description>
+  </doc>
+<!--  <depend require="baro_board.xml"/> -->
+  <header>
+    <file name="airspeed_ltc2485.h"/>
+  </header>
+  <periodic fun="airspeed_periodic()" freq="60."/>
+  <makefile target="ap">
+    <file name="airspeed_ltc2485.c peripherals/ltc2485.c"/>
+    <define name="USE_BARO_DIFF"/>
+    <define name="USE_LTC2485"/>
+  </makefile>
+</module>
+
+

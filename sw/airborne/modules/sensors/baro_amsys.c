@@ -46,7 +46,9 @@
 #include "gps.h"
 #endif
 
+#ifndef BARO_AMSYS_ADDR
 #define BARO_AMSYS_ADDR 0xF2
+#endif
 #define BARO_AMSYS_REG 0x07
 #define BARO_AMSYS_SCALE 0.32
 #define BARO_AMSYS_MAX_PRESSURE 103400 // Pascal
